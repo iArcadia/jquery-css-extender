@@ -1,8 +1,7 @@
 {
   "name": "jquery-css-extender",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "jQuery CSS Extender is a jQuery plugin which adds many CSS-relative methods.",
   "dependencies": {
     "uglify-js": "^3.4.9"
   },
