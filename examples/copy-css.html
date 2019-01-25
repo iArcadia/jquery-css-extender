@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
 
-    <title>jQuery CSS Extender - rawCss</title>
+    <title>jQuery CSS Extender - copyCss</title>
 
     <!-- Code Mirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
@@ -31,13 +31,13 @@
             });
 
             pushTranslation('subtitle', {
-                en: "using raw CSS in .css()",
-                fr: "utilisation de CSS pur dans .css()"
+                en: "copy CSS from one to other element",
+                fr: "copier le CSS d'un élément à l'autre"
             });
 
             pushTranslation('description', {
-                en: "This below button has been styled with raw CSS. No CSS file included.",
-                fr: "Le bouton ci-dessous a été stylisé avec du CSS pure. Aucun fichier CSS inclus."
+                en: "The left button was manually styled, and right ones copy its CSS.",
+                fr: "Le bouton de gauche a été stylisé manuellement, et les boutons de droite copient son CSS."
             });
 
             pushTranslation(0, {
@@ -48,10 +48,13 @@
             translate();
 
             // <codemirror-content>
-            $('#button').css(`
-                margin: 0 auto;
+            $('#button-container').css(`
+                display: flex;
+                justify-content: space-around;
+            `);
+
+            $('#button1').css(`
                 padding: 10px 20px;
-                display: block;
 
                 font-size: 20px;
 
@@ -59,16 +62,21 @@
                 border: 0;
                 border-radius: 5px;
                 box-shadow: 0 3px 0 #bbb;
-
                 cursor: pointer;
-            `);
+            `).copyCssTo($('#button2'));
+
+            $('#button3').copyCss($('#button1'));
             // </codemirror-content>
         });
     </script>
 </head>
 <body>
 <div id="my-content">
-    <button id="button" data-trans="0">Button</button>
+    <div id="button-container">
+        <button id="button1"><span data-trans="0">Button</span> 1</button>
+        <button id="button2"><span data-trans="0">Button</span> 2</button>
+        <button id="button3"><span data-trans="0">Button</span> 3</button>
+    </div>
 </div>
 </body>
 </html>

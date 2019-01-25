@@ -99,13 +99,26 @@ It will give you a JS object with what CSS rules just changed, all rules which h
 [
     {...},
     {
+        // List of all changed rules.
         allChangedRules: {...},
+        
+        // List of all rules.
         allRules: {...},
+        
+        // List of rules that changed since the last history.
         changedRulesFromLast: {...},
-        copiedFromObject: {...},
-        fromReset: null,
-        takenFromHistory: null,
-        takenFromObject: null
+        
+        // Reference to the object from which the rules was copied.
+        copiedFromObject: {...}|null,
+        
+        // If this history was created from a reset.
+        fromReset: {...}|null,
+        
+        // Reference to the history from which the rules was copied.
+        takenFromHistory: {...}|null,
+        
+        // Reference to the object from which the rules was taken.
+        takenFromObject: {...}|null,
     }
 ]
 ```
@@ -120,11 +133,12 @@ $('#element').useCssHistorySystem(false);
 
 TODO
 
-## Next features
+## To do before v1.0.0 release
 
-- Development | Before v1.0.0 release
-   - CSS states
+- Development
+   - [ ] CSS states
+   - [ ] Examples
 - GitHub
-   - Finish README.md
-   - Finish README.fr.md
-   - Issue template
+   - [ ] Finish README.md
+   - [ ] Finish README.fr.md
+   - [ ] Issue template

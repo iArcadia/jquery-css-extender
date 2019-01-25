@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
 
-    <title>jQuery CSS Extender - rawCss</title>
+    <title>jQuery CSS Extender - giveCssTo & takeCss</title>
 
     <!-- Code Mirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
@@ -31,13 +31,13 @@
             });
 
             pushTranslation('subtitle', {
-                en: "using raw CSS in .css()",
-                fr: "utilisation de CSS pur dans .css()"
+                en: "take or give CSS from one to other element",
+                fr: "prendre ou donner le CSS d'un élément à un autre"
             });
 
             pushTranslation('description', {
-                en: "This below button has been styled with raw CSS. No CSS file included.",
-                fr: "Le bouton ci-dessous a été stylisé avec du CSS pure. Aucun fichier CSS inclus."
+                en: "The left button was manually styled, but has a basic appareance because it gives its CSS to the middle one. The button 2 is the same because the last one takes its rules!",
+                fr: "Le bouton de gauche a été stylisé manuellement, mais a une apparence basique car il a donné son CSS à celui du milieu. Le bouton 2 l'est de même car le dernier a pris toutes ses règles!"
             });
 
             pushTranslation(0, {
@@ -48,10 +48,13 @@
             translate();
 
             // <codemirror-content>
-            $('#button').css(`
-                margin: 0 auto;
+            $('#button-container').css(`
+                display: flex;
+                justify-content: space-around;
+            `);
+
+            $('#button1').css(`
                 padding: 10px 20px;
-                display: block;
 
                 font-size: 20px;
 
@@ -59,16 +62,21 @@
                 border: 0;
                 border-radius: 5px;
                 box-shadow: 0 3px 0 #bbb;
-
                 cursor: pointer;
-            `);
+            `).giveCssTo($('#button2'));
+
+            $('#button3').takeCss($('#button2'));
             // </codemirror-content>
         });
     </script>
 </head>
 <body>
 <div id="my-content">
-    <button id="button" data-trans="0">Button</button>
+    <div id="button-container">
+        <button id="button1"><span data-trans="0">Button</span> 1</button>
+        <button id="button2"><span data-trans="0">Button</span> 2</button>
+        <button id="button3"><span data-trans="0">Button</span> 3</button>
+    </div>
 </div>
 </body>
 </html>
