@@ -49,24 +49,25 @@ $('.elements').css(`
 `);
 ```
 
-You can also style children elements directly with CSS blocks thanks to the special selector `:this`.
+You can also style children elements directly with CSS blocks thanks to the special selector `:this` which references to current element selected with jQuery.
 
 ```javascript
+// #element will have a flex display.
+// Direct <button> children of #element will have a red font color.
 $('#element').css(`
-    // #element will have a flex display.
+    
     :this {
         display: flex;
     }
     
-    // Direct <button> children of #element will have a red font color.
-    // "> button" and ":this > button" are the same things.
     > button {
         color: red;
     }
 `);
 ```
 
-Note that all selectors written before `:this` will **not be taken into account**.
+Note that all selectors written before `:this` will **not be taken into account**.  
+Note also that `> button` and `:this > button` are the same things.
 
 ### Copy CSS bewteen jQuery object
 
