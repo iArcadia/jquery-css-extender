@@ -49,6 +49,25 @@ $('.elements').css(`
 `);
 ```
 
+You can also style children elements directly with CSS blocks thanks to the special selector `:this`.
+
+```javascript
+$('#element').css(`
+    // #element will have a flex display.
+    :this {
+        display: flex;
+    }
+    
+    // Direct <button> children of #element will have a red font color.
+    // "> button" and ":this > button" are the same things.
+    > button {
+        color: red;
+    }
+`);
+```
+
+Note that all selectors written before `:this` will **not be taken into account**.
+
 ### Copy CSS bewteen jQuery object
 
 You have two buttons, you styled the first and want your second to have the exact same color, background-color, border and border-radius? No problem.

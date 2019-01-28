@@ -101,10 +101,10 @@
                 let matches = new RegExp(`([${selectorAllowedChars}]+)\{(.*)`, 's').exec(block);
                 let selector = matches[1];
                 let lines = matches[2];
-                let isForSelf = (selector.indexOf(':this') === 0);
+                let isForSelf = (selector.indexOf(':this') >= 0);
 
                 if (isForSelf) {
-                    this.css(lines.replace(/:this/, ''));
+                    this.css(lines.replace(/.*:this/, ''));
                 } else {
                     this.find(selector).css(lines);
                 }
