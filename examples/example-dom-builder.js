@@ -73,10 +73,34 @@ function buildPage() {
         text-align: center;
     `);
 
-    $('#my-content').append(
-        $('<textarea>').attr('id', 'code-html'),
-        $('<textarea>').attr('id', 'code-js')
-    ).insertAfter($content.find('p')).css(`
+    if (!window.location.pathname.split('/').includes('index.html')) {
+        $('#my-content').append(
+            $('<div>').attr('id', 'my-content-cm').css(`
+            margin-top: 20px;
+            display: flex;
+        `).append(
+                $('<div>').css(`flex-grow: 1; margin-right: 10px;`).append($('<textarea>').attr('id', 'code-html')),
+                $('<div>').css(`flex-grow: 1; margin-left: 10px;`).append($('<textarea>').attr('id', 'code-js'))
+            )
+        );
+
+        // back
+        let $backContainer = $('<div>').attr('id', 'back-container').css(`
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            
+            padding: 5px 10px;
+            
+            background-color: #fff;
+        `).appendTo($('body'));
+
+        $('<a>').attr('href', 'index.html').append(
+            $('<i>').addClass('fa fa-angle-double-left')
+        ).appendTo($backContainer);
+    }
+
+    $('#my-content').insertAfter($content.find('p')).css(`
         padding: 15px;
     
         background-color: #eee;

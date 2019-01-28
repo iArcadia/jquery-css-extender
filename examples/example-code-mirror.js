@@ -20,11 +20,12 @@ function createCodeMirror(which) {
         case 'html':
             mode = 'text/html';
             text = 'HTML';
-            code = $('#my-content').html()
+
+            code = $('#my-content').clone().html()
                 .replace(/<span data-trans=".+">(.+)<\/span>/g, '$1')
                 .replace(/ data-trans=".+"/g, '')
-                .replace(/ style=".+"/g, '')
-                .replace(/<textarea.+\/textarea>/gs, '')
+                .replace(/ style=".*"/g, '')
+                .replace(/<div id="my-content-cm".*\/div>/gs, '')
                 .replace(/ {4}([^ ])/g, '$1')
                 .trim();
             break;
@@ -48,15 +49,42 @@ function createCodeMirror(which) {
         font-family: monospace;
 
         border-bottom: 1px solid #fff;
-    `).copyCss($cm, ['background-color', 'color']).text(text);
+    `).copyCss($cm, ['background-color', 'color']).append(
+        $('<span>').text(text),
+        $('<span>').addClass('CodeMirror-copy').html('<i class="fa fa-copy"></i>').css(`
+            margin-left: 5px;
+            
+            cursor: pointer;
+        `).on('click', function () {
+            $(`#code-${which}`).show();
+            $(`#code-${which}`)[0].select();
+            document.execCommand('copy');
+            $(`#code-${which}`).hide();
+
+            $(this).prev().text(getCopiedTranslation());
+
+            setTimeout(() => {
+                $(this).prev().text(text);
+            }, 2000);
+        })
+    );
 
     $cm.css(`
         width: 100%;
-        height: auto;
     `);
 
-    if ($cm.height() > 200) {
-        cm.setSize(null, 200);
+    let cmHeight = ($('#block').outerHeight(true) - $('#block-header').outerHeight(true)) - $('#description').outerHeight(true);
+
+    cm.setSize(null, cmHeight);
+}
+
+function getCopiedTranslation() {
+    switch ($('#select-language').find('option:selected').val()) {
+        default:
+        case 'en':
+            return 'Copied to clipboard!';
+        case 'fr':
+            return 'Copié dans le presse-papier !';
     }
 }
 
