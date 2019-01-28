@@ -55,7 +55,6 @@ You can also style children elements directly with CSS blocks thanks to the spec
 // #element will have a flex display.
 // Direct <button> children of #element will have a red font color.
 $('#element').css(`
-    
     :this {
         display: flex;
     }
@@ -113,20 +112,23 @@ Each time that the `.css()` method is used, all changes are saved in a jQuery da
 $('#element').cssHistory();
 ```
 
-It will give you a JS object with what CSS rules just changed, all rules which have changed, a complete list of rules, and how these rules changed.
+It will give you a JS object with information about CSS rules.
 
 ```javascript
 [
     {...},
     {
-        // List of all changed rules.
+        // List of all changed rules got from "changedRulesFromLast" of all the history.
         allChangedRules: {...},
-        
-        // List of all rules.
-        allRules: {...},
         
         // List of rules that changed since the last history.
         changedRulesFromLast: {...},
+        
+        // List of all rules.
+        allComputedRules: {...},
+        
+        // List of all changed computed rules.
+        changedComputedRules: {...},
         
         // Reference to the object from which the rules was copied.
         copiedFromObject: {...}|null,
@@ -146,7 +148,17 @@ It will give you a JS object with what CSS rules just changed, all rules which h
 This system is activated by default, but you can deactivate it.
 
 ```javascript
+// For deactivating the system.
 $('#element').useCssHistorySystem(false);
+// For activating the system.
+$('#element').useCssHistorySystem(true);
+```
+
+Or if you just want to check the system activity...
+
+```javascript
+// Returns true or false.
+$('#element').useCssHistorySystem();
 ```
 
 ## API
@@ -162,3 +174,4 @@ TODO
    - [ ] Finish README.md
    - [ ] Finish README.fr.md
    - [ ] Issue template
+   - [ ] Finish API part
