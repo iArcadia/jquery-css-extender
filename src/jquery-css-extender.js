@@ -1,4 +1,18 @@
 (function ($) {
+    /** @var {object} Returns plugin information. */
+    $.cssExtender = {
+        name: 'jQuery CSS Extender',
+        version: '1.0.0',
+        github: 'https://github.com/iArcadia/jquery-css-extender'
+    };
+
+    let allPluginMethods = getAllPluginMethods();
+    for (let i in allPluginMethods) {
+        $[allPluginMethods[i]] = function (elem, ...args) {
+            return $(elem)[allPluginMethods[i]](...args);
+        };
+    }
+
     let fnCss = $.fn.css;
     $.fn.css = function () {
         if (!arguments.length || arguments[0] === null) {
@@ -40,9 +54,11 @@
             if (execOriginalCases[i]) {
                 fnCss.apply(this, arguments);
 
-                if (canPushIntoHistory) {
+                if (canPushIntoHistory && this.data('__cssForgetHistorySystemOnce') !== true) {
                     this.cssHistory(toPushIntoHistory);
                 }
+
+                this.data('__cssForgetHistorySystemOnce', false);
 
                 return this;
             }
@@ -395,7 +411,7 @@
     $.fn.resetCss = function (properties = null) {
         let css = this.getComputedCss(properties);
 
-        this.data('__cssFromReset', true);
+        this.data('__cssFromReset', !this.data('__cssForgetHistorySystemOnce'));
 
         for (let property in css) {
             css[property] = '';
@@ -407,21 +423,10 @@
     }
 
     /**
-     * Sets CSS rules to browser default ones whitout pushing into history.
-     * @param {string|array|null} properties
-     * @returns {jQuery}
-     */
-    // TODO update when disable css history system just for one will be done
-    $.fn.resetCssWithoutHistory = function (properties = null) {
-        return this.useCssHistorySystem(false).resetCss(properties).useCssHistorySystem(true);
-    }
-
-    /**
      * Activates or deactivates the use of CSS history. If null, gets if the system's state.
      * @param {boolean|null} use
      * @returns {jQuery|boolean}
      */
-    // TODO function which disable css history system just for one will be done
     $.fn.useCssHistorySystem = function (use = null) {
         if (use === null) {
             return this.data('__cssUseHistorySystem');
@@ -444,7 +449,15 @@
         return this;
     }
 
-    // TODO check all history methods when getCssHistory(id) will be done
+    /**
+     * Deactives the use of CSS history for the next execution of .css() only.
+     * @returns {jQuery}
+     */
+    $.fn.forgetCssHistorySystemOnce = function () {
+        this.data('__cssForgetHistorySystemOnce', true);
+
+        return this;
+    }
 
     /**
      * Gets CSS history or pushes a new item in the history.
@@ -498,11 +511,48 @@
     }
 
     /**
-     * Gets last entry in CSS history. (Would be the current style)
+     * Gets an entry in CSS history.
+     * @param {number} id
+     * @returns {object}
+     */
+    $.fn.getCssHistory = function (id) {
+        return this.cssHistory()[id];
+    }
+
+    /**
+     * Gets last entry in CSS history.
      * @returns {object}
      */
     $.fn.getLastCssHistory = function () {
-        return this.cssHistory()[this.cssHistory().length - 1];
+        return this.getCssHistory(this.cssHistory().length - 1);
+    }
+
+    /**
+     * Gets previous entry in CSS history.
+     * @returns {object}
+     */
+    $.fn.getPreviousCssHistory = function () {
+        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
+
+        if (id === 0) {
+            return null;
+        }
+
+        return this.getCssHistory(id - 1);
+    }
+
+    /**
+     * Gets next entry in CSS history.
+     * @returns {object}
+     */
+    $.fn.getNextCssHistory = function () {
+        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
+
+        if (id === (this.cssHistory().length - 1)) {
+            return null;
+        }
+
+        return this.getCssHistory(id + 1);
     }
 
     /**
@@ -514,7 +564,7 @@
     $.fn.useCssFromHistory = function (id, properties = null) {
         properties = handlePropertiesOptionalArgument(properties, 2, 'useCssFromHistory');
 
-        let css = this.cssHistory()[id].changedRulesFromLast;
+        let css = this.getCssHistory(id).allChangedRules;
 
         if (properties !== null) {
             for (let property in css) {
@@ -525,9 +575,9 @@
         }
 
         this.data('__cssCurrentHistoryId', id);
-        this.data('__cssCopiedFromHistory', this.cssHistory()[id]);
+        this.data('__cssCopiedFromHistory', this.getCssHistory(id));
 
-        return this.resetCssWithoutHistory().css(css);
+        return this.forgetCssHistorySystemOnce().resetCss().css(css);
     }
 
     /**
@@ -535,10 +585,32 @@
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
+    // TODO forget system once
     $.fn.usePreviousCss = function (properties = null) {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
 
+        if (id === 0) {
+            return this;
+        }
+
         this.data('__cssCurrentHistoryId', id--);
+        return this.useCssFromHistory(id, properties);
+    }
+
+    /**
+     * Uses the next used CSS rules.
+     * @param {string|array|null} properties
+     * @returns {jQuery}
+     */
+    // TODO forget system once
+    $.fn.useNextCss = function (properties = null) {
+        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
+
+        if (id === (this.cssHistory().length - 1)) {
+            return this;
+        }
+
+        this.data('__cssCurrentHistoryId', id++);
         return this.useCssFromHistory(id, properties);
     }
 
@@ -643,5 +715,40 @@
         }
 
         return properties;
+    }
+
+    /**
+     * Returns all methods of the plugin.
+     * @returns {array}
+     */
+    function getAllPluginMethods() {
+        return [
+            'rawCss',
+            'rawCssBlock',
+
+            'getComputedCss',
+            'getDifferencesFromDefaultCss',
+            'getAllCssRulesFromShorthand',
+
+            'copyCss',
+            'copyCssTo',
+            'takeCss',
+            'giveCssTo',
+            'resetCss',
+
+            'useCssHistorySystem',
+            'forgetCssHistorySystemOnce',
+            'cssHistory',
+            'getCssHistory',
+            'getLastCssHistory',
+            'getPreviousCssHistory',
+            'getNextCssHistory',
+            'useCssFromHistory',
+            'usePreviousCss',
+            'useNextCss',
+            'emptyCssHistory',
+
+            'cssState'
+        ];
     }
 }(jQuery));
