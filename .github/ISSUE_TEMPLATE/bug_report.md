@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 ```
 
 **JSFiddle link (instead of HTML and JS code)**
-https://jsfiddle.net
+[Here's a JSFiddle template](https://jsfiddle.net/iArcadia/ke30fr2d/6/#fork)
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
