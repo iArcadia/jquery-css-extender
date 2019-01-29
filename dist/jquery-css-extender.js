@@ -85,9 +85,9 @@
      * @param {string} errorType
      */
     $.cssExtender.fn.generateError = function (property, origin, position, correctTypes, errorType = 'Error') {
-        let propIsNotNull = typeOf(property, '!==', null);
-        let posIsInt = typeOf(position, '===', 'integer');
-        let typesIsArray = typeOf(correctTypes, '===', 'array');
+        let propIsNotNull = $.cssExtender.fn.typeOf(property, '!==', null);
+        let posIsInt = $.cssExtender.fn.typeOf(position, '===', 'integer');
+        let typesIsArray = $.cssExtender.fn.typeOf(correctTypes, '===', 'array');
 
         if (propIsNotNull && posIsInt && typesIsArray) {
             switch (position) {
@@ -675,6 +675,10 @@
         return this;
     };
 
+    $.fn.canPushIntoCssHistory = function () {
+
+    }
+
     /**
      * Gets CSS history or pushes a new item in the history.
      * @param {object|null} css
@@ -866,32 +870,33 @@
      * @param {object|null} css
      * @returns {object}
      */
-    // PAUSE
     $.fn.cssState = function (id = null, css = null) {
-        if (id !== null) {
-            if (typeof id === 'number') {
+        if ($.cssExtender.fn.typeOf(id, 'is not', null)) {
+            if ($.cssExtender.fn.typeOf(id, 'is', 'integer')) {
                 id = String(id);
             }
 
-            if (typeof id !== 'string') {
-                throw new TypeError(`The first argument of jQuery.fn.cssState must be an string. ${typeof id} given.`);
+            if ($.cssExtender.fn.typeOf(id, 'is not', 'string')) {
+                $.cssExtender.fn.generateError(id, 'cssState', 1, ['string'], 'TypeError');
             }
         }
 
-        if (css !== null && typeof css !== 'object') {
-            throw new TypeError(`The second argument of jQuery.fn.cssState must be an object. ${typeof css} given.`);
+        if ($.cssExtender.fn.typeOf(css, 'is not', null)
+            && $.cssExtender.fn.typeOf(css, 'is not', 'object')) {
+            $.cssExtender.fn.generateError(css, 'cssState', 2, ['object'], 'TypeError');
         }
 
-        if (typeof this.data('__cssState') === 'undefined') {
+        if ($.cssExtender.fn.typeOf(this.data('__cssState'), 'is', 'undefined')) {
             this.data('__cssState', {});
         }
 
         if (!arguments.length) {
             return this.data('__cssState');
         } else if (arguments.length === 1) {
-            for (let id in this.data('__cssState')) {
-                if (typeof this.data('__cssState')[id] === 'object') {
-                    return this.data('__cssState')[id]
+            for (let sid in this.data('__cssState')) {
+                if (sid === id
+                    && $.cssExtender.fn.typeOf(this.data('__cssState')[sid], 'is', 'object')) {
+                    return this.data('__cssState')[sid];
                 }
             }
         } else {
@@ -901,5 +906,103 @@
 
             return this.data('__cssState', state);
         }
+    };
+
+    /**
+     * Creates a CSS state from current element style.
+     * @param {string} id
+     * @returns {jQuery}
+     */
+    $.fn.cssStateFromCurrent = function (id) {
+        return this.cssState(id, this.getLastCss().allChangedRules);
+    };
+
+    /**
+     * Creates the CSS state by default from current element style.
+     * @returns {jQuery}
+     */
+    $.fn.defaultCssStateFromCurrent = function () {
+        return this.cssStateFromCurrent('default');
     }
+
+    /**
+     * Creates the CSS state by default.
+     * @param {object|null} css
+     * @returns {jQuery}
+     */
+    $.fn.defaultCssState = function (css = null) {
+        if ($.cssExtender.fn.typeOf(css, 'is', null)) {
+            return this.cssState('default');
+        }
+
+        return this.cssState('default', css).useDefaultCssState();
+    };
+
+    /**
+     * Uses the default CSS state.
+     * @returns {jQuery}
+     */
+    $.fn.useDefaultCssState = function () {
+        return this.css(this.defaultCssState());
+    };
+
+    /**
+     * Uses a CSS state.
+     * @param {string} id
+     * @returns {jQuery}
+     */
+    $.fn.useCssFromState = function (id) {
+        return this.css(this.cssState(id));
+    };
+
+    /**
+     * Creates an event listener which will be associated to a CSS state.
+     * @param {string} eventType
+     * @param {string} id
+     * @returns {jQuery}
+     */
+    $.fn.cssStateOn = function (eventType, id = null) {
+        if ($.cssExtender.fn.typeOf(id, 'is', null)) {
+            id = eventType;
+        }
+
+        this.on(eventType, function () {
+            $(this).useCssFromState(id);
+        })
+
+        return this;
+    };
+
+    /**
+     * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
+     * @param {string} id - Default value: hover
+     */
+    $.fn.cssStateOnHover = function (id = 'hover') {
+        this.on('mouseenter', function () {
+            $(this).useCssFromState(id);
+        }).on('mouseleave', function () {
+            $(this).useDefaultCssState();
+        });
+    };
+
+    /**
+     * Loops through all CSS states. For each one, creates and associates an event listener.
+     * @param {array} excludedStates - Default value: []
+     * @returns {jQuery}
+     */
+    $.fn.autoCssStateOn = function (excludedStates = []) {
+        let states = this.cssState();
+
+        for (let id in states) {
+            if (!excludedStates.includes(id)) {
+                if (id === 'hover') {
+                    this.cssStateOnHover();
+                } else if (id !== 'default') {
+                    this.cssStateOn(id);
+                }
+            }
+        }
+
+        return this;
+    };
 }(jQuery));

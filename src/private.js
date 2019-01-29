@@ -85,9 +85,9 @@
      * @param {string} errorType
      */
     $.cssExtender.fn.generateError = function (property, origin, position, correctTypes, errorType = 'Error') {
-        let propIsNotNull = typeOf(property, '!==', null);
-        let posIsInt = typeOf(position, '===', 'integer');
-        let typesIsArray = typeOf(correctTypes, '===', 'array');
+        let propIsNotNull = $.cssExtender.fn.typeOf(property, '!==', null);
+        let posIsInt = $.cssExtender.fn.typeOf(position, '===', 'integer');
+        let typesIsArray = $.cssExtender.fn.typeOf(correctTypes, '===', 'array');
 
         if (propIsNotNull && posIsInt && typesIsArray) {
             switch (position) {

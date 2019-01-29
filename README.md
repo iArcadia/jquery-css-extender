@@ -136,9 +136,6 @@ It will give you a JS object with information about CSS rules.
         // If this history was created from a reset.
         fromReset: {...}|null,
         
-        // Reference to the history from which the rules was copied.
-        takenFromHistory: {...}|null,
-        
         // Reference to the object from which the rules was taken.
         takenFromObject: {...}|null,
     }
@@ -152,6 +149,8 @@ This system is activated by default, but you can deactivate it.
 $('#element').useCssHistorySystem(false);
 // For activating the system.
 $('#element').useCssHistorySystem(true);
+// For deactivating the system for the next CSS changes ONLY.
+$('#element').forgetCssHistorySystemOnce();
 ```
 
 Or if you just want to check the system activity...
@@ -161,6 +160,71 @@ Or if you just want to check the system activity...
 $('#element').useCssHistorySystem();
 ```
 
+### CSS states
+
+The CSS state system is designed to work mainly with event listeners.  
+This system looks like the history one, but there are many differences:
+
+- Each entry can have a string ID.
+- You decide when to push a new entry.
+
+Easy usage, as the history system:
+
+```javascript
+// Saves a state named "myState".
+$('#element').cssState('myState', {'color': 'red'});
+// Uses the newly saved state "myState".
+$('#element').useCssFromState('myState');
+// Or if you want to use the current style to create a new state.
+$('#element').css('...').cssStateFromCurrent('secondState');
+```
+
+The first particularity is the usage of a default state, because this one has its own associated methods, and so is easily usable.
+
+```javascript
+// Saves a default state from the current style...
+$('#element').css('...').defaultCssStateFromCurrent();
+// Or directly from an object.
+$('#element').defaultCssState({...});
+// Want to use the default?
+$('#element').useDefaultCssState();
+```
+
+The second particularity is, as said, the relation with event listeners.
+
+```javascript
+// Uses "myState" when the element is clicked.
+$('#element').cssStateOn('click', 'myState');
+// ...equals to
+$('#element').on('click', function() {
+    $(this).useCssFromState('myState');
+});
+
+// And when I say that point is a particularity, the line below will search for a state named "click".
+$('#element').cssStateOn('click');
+```
+
+But there is a special method for the "hover" event:
+
+```javascript
+// This one will make the element uses "myState" when hovered by the mouse, but will use back the default state when the mouse will leave!
+$('#element').cssStateOnHover('myState');
+// And if you have a "hover" state...
+$('#element').cssStateOnHover();
+```
+
+One last point, there is a method for attributing an event listener on **each already existing state**, excluding the default one of course.  
+The method will execute `.cssStateOnHover` for the state "hover", else it will execute `.cssStateOn('...')`.
+
+```javascript
+// Creates many event listeners: hover and click.
+$('#element')
+    .cssState('default', {...})
+    .cssState('hover', {...})
+    .cssState('click', {...})
+    .autoCssStateOn();
+```
+
 ## API
 
 TODO
@@ -168,10 +232,9 @@ TODO
 ## To do before v1.0.0 release
 
 - Development
-   - [ ] CSS states
-   - [ ] Examples
+   - [x] CSS states
+   - [ ] Finish examples
 - GitHub
    - [ ] Finish README.md
    - [ ] Finish README.fr.md
-   - [ ] Issue template
-   - [ ] Finish API part
+   - [x] Issue template

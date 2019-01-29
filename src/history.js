@@ -40,6 +40,10 @@
         return this;
     };
 
+    $.fn.canPushIntoCssHistory = function () {
+
+    }
+
     /**
      * Gets CSS history or pushes a new item in the history.
      * @param {object|null} css
