@@ -1,33 +1,29 @@
 (function ($) {
-    /** @var {object} Returns plugin information. */
-    $.cssExtender = {
-        name: 'jQuery CSS Extender',
-        version: '1.0.0',
-        github: 'https://github.com/iArcadia/jquery-css-extender'
-    };
-
-    let allPluginMethods = getAllPluginMethods();
+    let allPluginMethods = $.cssExtender.fn.getAllPluginMethods();
     for (let i in allPluginMethods) {
         $[allPluginMethods[i]] = function (elem, ...args) {
             return $(elem)[allPluginMethods[i]](...args);
         };
     }
 
+    /**
+     * Overrides the original .css() method.
+     */
     let fnCss = $.fn.css;
     $.fn.css = function () {
-        if (!arguments.length || arguments[0] === null) {
+        if (!arguments.length || $.cssExtender.fn.typeOf(arguments[0], 'is', null)) {
             return this.getComputedCss();
         }
 
         let execOriginalCases = [
             (arguments.length > 1),
-            (typeof arguments[0] === 'object'),
-            (typeof arguments[0] === 'string' && arguments[0].indexOf(':') === -1)
+            ($.cssExtender.fn.typeOf(arguments[0], 'is', 'object')),
+            ($.cssExtender.fn.typeOf(arguments[0], 'is', 'string') && arguments[0].indexOf(':') === -1)
         ];
 
         let pushIntoHistoryCases = [
-            (typeof arguments[0] === 'string' && typeof arguments[1] === 'string'),
-            (typeof arguments[0] === 'object')
+            ($.cssExtender.fn.typeOf(arguments[0], 'is', 'string') && $.cssExtender.fn.typeOf(arguments[1], 'is', 'string')),
+            ($.cssExtender.fn.typeOf(arguments[0], 'is', 'object'))
         ];
 
         let canPushIntoHistory = false;
@@ -65,7 +61,7 @@
         }
 
         return this.rawCss(arguments[0]);
-    }
+    };
 
     /**
      * Adds CSS rules from a CSS-formated string.
@@ -73,8 +69,8 @@
      * @returns {jQuery}
      */
     $.fn.rawCss = function (css) {
-        if (typeof css !== 'string') {
-            throw new TypeError(`The first argument of jQuery.fn.rawCss must be a string. ${typeof css} given.`);
+        if ($.cssExtender.fn.typeOf(css, 'is not', 'string')) {
+            $.cssExtender.fn.generateError(css, 'rawCss', 1, ['string'], 'TypeError');
         }
 
         let isCssBlock = /\{.*\}/s.test(css);
@@ -87,7 +83,7 @@
         let lines = css.trim().split(';');
 
         for (let i = 0; i < lines.length; i++) {
-            line = lines[i].trim();
+            let line = lines[i].trim();
 
             if (line) {
                 let matches = /([a-z-]+)\s*:\s*(.+)/.exec(line);
@@ -96,7 +92,7 @@
         }
 
         return this.css(cssObj);
-    }
+    };
 
     /**
      * Handles CSS rules found into blocks and adds them to elements found with selectors.
@@ -107,7 +103,7 @@
         let blocks = css.trim().split('}');
 
         for (let i in blocks) {
-            block = blocks[i];
+            let block = blocks[i];
 
             if (block) {
                 let selectorAllowedEscapedChars = `[]wd-`.split('').map(function (char) {
@@ -128,7 +124,7 @@
         }
 
         return this;
-    }
+    };
 
     /**
      * Gets computed CSS rules.
@@ -137,7 +133,7 @@
      * @returns {object}
      */
     $.fn.getComputedCss = function (properties = null, excludingLoop = false) {
-        properties = handlePropertiesOptionalArgument(properties, 1, 'getComputedCss');
+        properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getComputedCss');
 
         let cssList = window.getComputedStyle(this[0], null);
         let result = {};
@@ -156,7 +152,7 @@
         }
 
         return result;
-    }
+    };
 
     /**
      * Gets all CSS rules that are differents from the original ones.
@@ -165,7 +161,7 @@
      */
     // TODO excludingLoop
     $.fn.getDifferencesFromDefaultCss = function (properties = null) {
-        properties = handlePropertiesOptionalArgument(properties, 1, 'getDifferencesFromDefaultCss');
+        properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getDifferencesFromDefaultCss');
 
         let currentCss = this.getComputedCss();
         let $temp = this.clone().useCssHistorySystem(false).appendTo('body');
@@ -193,7 +189,7 @@
 
         $temp.remove();
         return alteredRules;
-    }
+    };
 
     $.fn.getAllCssRulesFromShorthand = function (shorthand) {
         switch (shorthand) {
@@ -301,18 +297,18 @@
      *
      * @param {jQuery} $obj
      * @param {string|array|null} properties
-     * @param {bool} excludingLoop
+     * @param {boolean} excludingLoop
      * @returns {jQuery}
      */
     $.fn.copyCss = function ($obj, properties = null, excludingLoop = false) {
-        if (!($obj instanceof jQuery)) {
-            throw new TypeError(`The first argument of jQuery.fn.copyCss must be a jQuery object. ${typeof $obj} given.`);
+        if ($.cssExtender.fn.typeOf($obj, 'is not', jQuery)) {
+            $.cssExtender.fn.generateError($obj, 'copyCss', 1, ['jQuery'], 'TypeError');
         }
 
         this.data('__cssCopiedFromObject', $obj);
 
-        if (typeof $obj.getLastCssHistory() !== 'undefined') {
-            let allChangedRules = $obj.getLastCssHistory().allChangedRules;
+        if ($.cssExtender.fn.typeOf($obj.getLastCss(), 'is not', 'undefined')) {
+            let allChangedRules = $obj.getLastCss().allChangedRules;
             let finalChangedRules = {};
 
             if (properties !== null) {
@@ -329,25 +325,25 @@
             this.css(finalChangedRules);
         }
 
-        if (typeof $obj.getLastCssHistory() === 'undefined' || !$obj.useCssHistorySystem()) {
+        if ($.cssExtender.fn.typeOf($obj.getLastCss(), 'is', 'undefined') || !$obj.useCssHistorySystem()) {
             this.css($obj.getComputedCss(properties, excludingLoop));
         }
 
         return this;
-    }
+    };
 
     /**
      * Copies its own CSS rules to a jQuery object.
      * @param {jQuery} $obj
      * @param {string|array|null} properties
-     * @param {bool} excludingLoop
+     * @param {boolean} excludingLoop
      * @returns {jQuery}
      */
     $.fn.copyCssTo = function ($obj, properties = null, excludingLoop = false) {
         $obj.copyCss(this, properties, excludingLoop);
 
         return this;
-    }
+    };
 
     /**
      * Copies CSS rules then resets rules of a jQuery object.
@@ -357,14 +353,14 @@
      * @returns {jQuery}
      */
     $.fn.takeCss = function ($obj, properties = null, excludingLoop = false) {
-        if (!($obj instanceof jQuery)) {
-            throw new TypeError(`The first argument of jQuery.fn.takeCss must be a jQuery object. ${typeof $obj} given.`);
+        if ($.cssExtender.fn.typeOf($obj, 'is not', jQuery)) {
+            $.cssExtender.fn.generateError($obj, 'takeCss', 1, ['jQuery'], 'TypeError');
         }
 
         this.data('__cssTakenFromObject', $obj);
 
-        if (typeof $obj.getLastCssHistory() !== 'undefined') {
-            let allChangedRules = $obj.getLastCssHistory().allChangedRules;
+        if ($.cssExtender.fn.typeOf($obj.getLastCss(), 'is not', 'undefined')) {
+            let allChangedRules = $obj.getLastCss().allChangedRules;
             let finalChangedRules = {};
 
             if (properties !== null) {
@@ -381,14 +377,14 @@
             this.css(finalChangedRules);
         }
 
-        if (typeof $obj.getLastCssHistory() === 'undefined' || !$obj.useCssHistorySystem()) {
+        if ($.cssExtender.fn.typeOf($obj, 'is', 'undefined') || !$obj.useCssHistorySystem()) {
             this.css($obj.getComputedCss(properties, excludingLoop));
         }
 
         $obj.resetCss(properties);
 
         return this;
-    }
+    };
 
     /**
      * Copies its own CSS rules to a jQuery object then resets its rules.
@@ -401,7 +397,7 @@
         $obj.takeCss(this, properties, excludingLoop);
 
         return this;
-    }
+    };
 
     /**
      * Sets CSS rules to browser default ones.
@@ -420,335 +416,5 @@
         this.css(css);
 
         return this;
-    }
-
-    /**
-     * Activates or deactivates the use of CSS history. If null, gets if the system's state.
-     * @param {boolean|null} use
-     * @returns {jQuery|boolean}
-     */
-    $.fn.useCssHistorySystem = function (use = null) {
-        if (use === null) {
-            return this.data('__cssUseHistorySystem');
-        }
-
-        if (typeof use === 'string') {
-            use = (use === 'true');
-        }
-
-        if (typeof use === 'number') {
-            use = (use > 0);
-        }
-
-        if (typeof use !== 'boolean') {
-            throw new TypeError(`The first argument of jQuery.fn.useCssHistory must be a boolean. ${typeof use} given.`);
-        }
-
-        this.data('__cssUseHistorySystem', use);
-
-        return this;
-    }
-
-    /**
-     * Deactives the use of CSS history for the next execution of .css() only.
-     * @returns {jQuery}
-     */
-    $.fn.forgetCssHistorySystemOnce = function () {
-        this.data('__cssForgetHistorySystemOnce', true);
-
-        return this;
-    }
-
-    /**
-     * Gets CSS history or pushes a new item in the history.
-     * @param {object|null} css
-     * @returns {array}
-     */
-    $.fn.cssHistory = function (css = null) {
-        if (css !== null && typeof css !== 'object') {
-            throw new TypeError(`The first argument of jQuery.fn.cssHistory must be an object. ${typeof css} given.`);
-        }
-
-        if (typeof this.data('__cssHistory') === 'undefined') {
-            this.data('__cssHistory', []);
-        }
-
-        if (typeof this.data('__cssUseHistorySystem') === 'undefined') {
-            this.data('__cssUseHistorySystem', true);
-        }
-
-        if (!arguments.length || css === null) {
-            return this.data('__cssHistory');
-        } else {
-            if (this.data('__cssUseHistorySystem') === false) {
-                return this;
-            }
-
-            let history = this.data('__cssHistory');
-
-            history.push({
-                changedRulesFromLast: css,
-                allChangedRules: $.extend(mergeAllChangedRulesFromLast(this), css),
-
-                changedComputedRules: this.getDifferencesFromDefaultCss(),
-                allComputedRules: this.getComputedCss(),
-
-                takenFromObject: this.data('__cssTakenFromObject') || null,
-                copiedFromObject: this.data('__cssCopiedFromObject') || null,
-                takenFromHistory: this.data('__cssCopiedFromHistory') || null,
-                fromReset: this.data('__cssFromReset') || null
-            });
-
-            this.removeData([
-                '__cssTakenFromObject',
-                '__cssCopiedFromObject',
-                '__cssCopiedFromHistory',
-                '__cssFromReset'
-            ]);
-
-            return this.data('__cssHistory', history);
-        }
-    }
-
-    /**
-     * Gets an entry in CSS history.
-     * @param {number} id
-     * @returns {object}
-     */
-    $.fn.getCssHistory = function (id) {
-        return this.cssHistory()[id];
-    }
-
-    /**
-     * Gets last entry in CSS history.
-     * @returns {object}
-     */
-    $.fn.getLastCssHistory = function () {
-        return this.getCssHistory(this.cssHistory().length - 1);
-    }
-
-    /**
-     * Gets previous entry in CSS history.
-     * @returns {object}
-     */
-    $.fn.getPreviousCssHistory = function () {
-        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
-
-        if (id === 0) {
-            return null;
-        }
-
-        return this.getCssHistory(id - 1);
-    }
-
-    /**
-     * Gets next entry in CSS history.
-     * @returns {object}
-     */
-    $.fn.getNextCssHistory = function () {
-        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
-
-        if (id === (this.cssHistory().length - 1)) {
-            return null;
-        }
-
-        return this.getCssHistory(id + 1);
-    }
-
-    /**
-     * Uses a previous CSS taken from the history.
-     * @param {number} id
-     * @param {string|array|null} properties
-     * @returns {jQuery}
-     */
-    $.fn.useCssFromHistory = function (id, properties = null) {
-        properties = handlePropertiesOptionalArgument(properties, 2, 'useCssFromHistory');
-
-        let css = this.getCssHistory(id).allChangedRules;
-
-        if (properties !== null) {
-            for (let property in css) {
-                if (!properties.includes(property)) {
-                    delete css[property];
-                }
-            }
-        }
-
-        this.data('__cssCurrentHistoryId', id);
-        this.data('__cssCopiedFromHistory', this.getCssHistory(id));
-
-        return this.forgetCssHistorySystemOnce().resetCss().css(css);
-    }
-
-    /**
-     * Uses the previous used CSS rules.
-     * @param {string|array|null} properties
-     * @returns {jQuery}
-     */
-    // TODO forget system once
-    $.fn.usePreviousCss = function (properties = null) {
-        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
-
-        if (id === 0) {
-            return this;
-        }
-
-        this.data('__cssCurrentHistoryId', id--);
-        return this.useCssFromHistory(id, properties);
-    }
-
-    /**
-     * Uses the next used CSS rules.
-     * @param {string|array|null} properties
-     * @returns {jQuery}
-     */
-    // TODO forget system once
-    $.fn.useNextCss = function (properties = null) {
-        let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
-
-        if (id === (this.cssHistory().length - 1)) {
-            return this;
-        }
-
-        this.data('__cssCurrentHistoryId', id++);
-        return this.useCssFromHistory(id, properties);
-    }
-
-    /**
-     * Empties the CSS history.
-     * @returns {jQuery}
-     */
-    $.fn.emptyCssHistory = function () {
-        return this.data('__cssHistory');
-    }
-
-    /**
-     * Gets all, or one CSS state, or pushes a new item in the state list.
-     * @param {string|null}
-     * @param {object|null} css
-     * @returns {object}
-     */
-    // PAUSE
-    $.fn.cssState = function (id = null, css = null) {
-        if (id !== null) {
-            if (typeof id === 'number') {
-                id = String(id);
-            }
-
-            if (typeof id !== 'string') {
-                throw new TypeError(`The first argument of jQuery.fn.cssState must be an string. ${typeof id} given.`);
-            }
-        }
-
-        if (css !== null && typeof css !== 'object') {
-            throw new TypeError(`The second argument of jQuery.fn.cssState must be an object. ${typeof css} given.`);
-        }
-
-        if (typeof this.data('__cssState') === 'undefined') {
-            this.data('__cssState', {});
-        }
-
-        if (!arguments.length) {
-            return this.data('__cssState');
-        } else if (arguments.length === 1) {
-            for (let id in this.data('__cssState')) {
-                if (typeof this.data('__cssState')[id] === 'object') {
-                    return this.data('__cssState')[id]
-                }
-            }
-        } else {
-            let state = this.data('__cssState');
-
-            state[id] = css;
-
-            return this.data('__cssState', state);
-        }
-    }
-
-    /**
-     * Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
-     * @param {jQuery} $self
-     * @returns {object}
-     */
-    function mergeAllChangedRulesFromLast($self) {
-        let histories = $self.cssHistory();
-        let allChangedRules = {};
-
-        for (let i in histories) {
-            let history = histories[i];
-            $.extend(allChangedRules, history.changedRulesFromLast);
-        }
-
-        return allChangedRules;
-    }
-
-    /**
-     * Checks the optional argument "properties" used in many methods.
-     * @param {string|array|null} properties
-     * @param {string} origin
-     * @param {number|string} positionInArgs
-     * @returns {array}
-     */
-    function handlePropertiesOptionalArgument(properties, origin, positionInArgs) {
-        if (typeof properties === 'string') {
-            return [properties];
-        }
-
-        if (properties !== null && !Array.isArray(properties)) {
-            if (Number.isInteger(positionInArgs)) {
-                switch (positionInArgs) {
-                    case 1:
-                        positionInArgs = 'first';
-                        break;
-
-                    case 2:
-                        positionInArgs = 'second';
-                        break;
-
-                    case 3:
-                        positionInArgs = 'third';
-                        break;
-                }
-
-                throw new TypeError(`The ${positionInArgs} argument of jQuery.fn.${origin} must be a string, an array or null. ${typeof properties} given.`);
-            }
-        }
-
-        return properties;
-    }
-
-    /**
-     * Returns all methods of the plugin.
-     * @returns {array}
-     */
-    function getAllPluginMethods() {
-        return [
-            'rawCss',
-            'rawCssBlock',
-
-            'getComputedCss',
-            'getDifferencesFromDefaultCss',
-            'getAllCssRulesFromShorthand',
-
-            'copyCss',
-            'copyCssTo',
-            'takeCss',
-            'giveCssTo',
-            'resetCss',
-
-            'useCssHistorySystem',
-            'forgetCssHistorySystemOnce',
-            'cssHistory',
-            'getCssHistory',
-            'getLastCssHistory',
-            'getPreviousCssHistory',
-            'getNextCssHistory',
-            'useCssFromHistory',
-            'usePreviousCss',
-            'useNextCss',
-            'emptyCssHistory',
-
-            'cssState'
-        ];
-    }
+    };
 }(jQuery));

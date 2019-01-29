@@ -2,15 +2,10 @@
   "name": "jquery-css-extender",
   "version": "1.0.0",
   "description": "jQuery CSS Extender is a jQuery plugin which adds many CSS-relative methods.",
-  "dependencies": {
-    "uglify-js": "^3.4.9"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
     "babel-minify": "^0.5.0",
-    "jquery": "^3.3.1"
+    "fuse": "^0.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
