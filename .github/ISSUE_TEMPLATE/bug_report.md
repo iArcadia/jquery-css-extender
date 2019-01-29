@@ -10,18 +10,21 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
 **HTML code**
 ```html
-<!-- Write your concernad HTML code. -->
+<!-- Write your concerned HTML code. -->
 ```
 
 **Javascript code**
 ```javascript
-// Write your concernad JS code.
+// Write your concerned JS code.
 ```
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**JSFiddle link (instead of HTML and JS code)**
+https://jsfiddle.net
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
