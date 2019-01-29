@@ -1,6 +1,6 @@
 # jQuery CSS Extender
 
-_**English** | [Français](https://github.com/iArcadia/jquery-css-extender/blob/dev/README.fr.md)_
+_**English** | [Français](https://github.com/iArcadia/jquery-css-extender/blob/master/README.fr.md)_
 
 ---
 
