@@ -86,7 +86,7 @@ You can also take style from an element. **The element which give its rules will
 ```javascript
 let cssRulesToTake = ['color', 'background-color', 'border', 'border-radius'];
 
-// Take some CSS rules to another one.
+// Take some CSS rules from another one.
 $('#buttonB').takeCss($('#buttonA'), cssRulesToTake);
 // Or give to.
 $('#buttonA').giveCssTo($('#buttonB', cssRulesToTake));
