@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+
+    <title>jQuery CSS Extender - rawCssBlock</title>
+
+    <!-- Code Mirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/zenburn.min.css"/>
+
+    <!-- jQuery 3.3.1 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- jQuery CSS Extender -->
+    <script src="../dist/jquery-css-extender.js"></script>
+    <!-- Code Mirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/xml/xml.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Example JS -->
+    <script src="example-dom-builder.js"></script>
+    <script src="example-translation.js"></script>
+    <script src="example-code-mirror.js"></script>
+
+    <script>
+        $(document).on('translationready', function () {
+            pushTranslation('example', {
+                en: "Example:",
+                fr: "Exemple:",
+                _after: ' '
+            });
+
+            pushTranslation('subtitle', {
+                en: "using raw CSS blocks in .css()",
+                fr: "utilisation de blocs CSS purs dans .css()"
+            });
+
+            pushTranslation('description', {
+                en: "The below container and its buttons was styled with CSS blocks.",
+                fr: "Le conteneur ci-dessous et ses boutons ont été stylisés avec des blocs CSS."
+            });
+
+            pushTranslation(0, {
+                en: $('[data-trans="0"]').first().text(),
+                fr: "Bouton"
+            });
+
+            translate();
+
+            // <codemirror-content>
+            $('#button-container').css(`
+                :this {
+                    display: flex;
+                }
+
+                button {
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                    display: block;
+
+                    font-size: 20px;
+
+                    background-color: #ddd;
+                    border: 0;
+                    border-radius: 5px;
+                    box-shadow: 0 3px 0 #bbb;
+
+                    cursor: pointer;
+                }
+
+                button:nth-of-type(2), button:nth-of-type(3) {
+                    box-shadow: none;
+                }
+
+                button:nth-of-type(2) {
+                    border: 3px solid #bbb;
+                }
+            `);
+            // </codemirror-content>
+        });
+    </script>
+</head>
+<body>
+<div id="my-content">
+    <div id="button-container">
+        <button data-trans="0">Button</button>
+        <button data-trans="0">Button</button>
+        <button data-trans="0">Button</button>
+    </div>
+</div>
+</body>
+</html>

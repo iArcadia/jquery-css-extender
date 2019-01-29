@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+
+    <title>jQuery CSS Extender - giveCssTo & takeCss</title>
+
+    <!-- Code Mirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/zenburn.min.css"/>
+
+    <!-- jQuery 3.3.1 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- jQuery CSS Extender -->
+    <script src="../dist/jquery-css-extender.js"></script>
+    <!-- Code Mirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/xml/xml.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Example JS -->
+    <script src="example-dom-builder.js"></script>
+    <script src="example-translation.js"></script>
+    <script src="example-code-mirror.js"></script>
+
+    <script>
+        $(document).on('translationready', function () {
+            pushTranslation('example', {
+                en: "Example:",
+                fr: "Exemple:",
+                _after: ' '
+            });
+
+            pushTranslation('subtitle', {
+                en: "take or give CSS from one to other element",
+                fr: "prendre ou donner le CSS d'un élément à un autre"
+            });
+
+            pushTranslation('description', {
+                en: "The left button was manually styled, but has a basic appareance because it gives its CSS to the middle one. The button 2 is the same because the last one takes its rules!",
+                fr: "Le bouton de gauche a été stylisé manuellement, mais a une apparence basique car il a donné son CSS à celui du milieu. Le bouton 2 l'est de même car le dernier a pris toutes ses règles!"
+            });
+
+            pushTranslation(0, {
+                en: $('[data-trans="0"]').first().text(),
+                fr: "Bouton"
+            });
+
+            translate();
+
+            // <codemirror-content>
+            $('#button-container').css(`
+                display: flex;
+                justify-content: space-around;
+            `);
+
+            $('#button1').css(`
+                padding: 10px 20px;
+
+                font-size: 20px;
+
+                background-color: #ddd;
+                border: 0;
+                border-radius: 5px;
+                box-shadow: 0 3px 0 #bbb;
+                cursor: pointer;
+            `).giveCssTo($('#button2'));
+
+            $('#button3').takeCss($('#button2'));
+            // </codemirror-content>
+        });
+    </script>
+</head>
+<body>
+<div id="my-content">
+    <div id="button-container">
+        <button id="button1"><span data-trans="0">Button</span> 1</button>
+        <button id="button2"><span data-trans="0">Button</span> 2</button>
+        <button id="button3"><span data-trans="0">Button</span> 3</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "jquery-css-extender",
+  "version": "1.0.0",
+  "description": "jQuery CSS Extender is a jQuery plugin which adds many CSS-relative methods.",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-minify": "^0.5.0",
+    "fuse": "^0.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iArcadia/jquery-css-extender.git"
+  },
+  "author": "Kévin Bibollet",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/iArcadia/jquery-css-extender/issues"
+  },
+  "homepage": "https://github.com/iArcadia/jquery-css-extender#readme"
+}

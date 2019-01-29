@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+
+    <title>jQuery CSS Extender</title>
+
+    <!-- Code Mirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/zenburn.min.css"/>
+
+    <!-- jQuery 3.3.1 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- jQuery CSS Extender -->
+    <script src="../dist/jquery-css-extender.js"></script>
+    <!-- Code Mirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/mode/xml/xml.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Example JS -->
+    <script src="example-dom-builder.js"></script>
+    <script src="example-translation.js"></script>
+
+    <script>
+        $(document).on('translationready', function () {
+            pushTranslation('example', {
+                en: "Summary",
+                fr: "Sommaire"
+            });
+
+            pushTranslation('subtitle', {
+                en: "",
+                fr: ""
+            });
+
+            pushTranslation('description', {
+                en: "Click on a link to take a look at corresponding example!",
+                fr: "Cliquez sur un lien pour jeter un oeil à l'exemple correspondant !"
+            });
+
+            pushTranslation(0, {
+                en: "Using raw CSS in .css()",
+                fr: "Utilisation de CSS pur dans .css()"
+            });
+
+            pushTranslation(1, {
+                en: "Copy CSS from one to other element",
+                fr: "Copier le CSS d'un élément à l'autre"
+            });
+
+            pushTranslation(2, {
+                en: "Take or give CSS from one to other element",
+                fr: "Prendre ou donner le CSS d'un élément à un autre"
+            });
+
+            pushTranslation(3, {
+                en: "Using raw CSS blocks in .css()",
+                fr: "Utilisation de blocs CSS purs dans .css()"
+            });
+
+            translate();
+
+            $('#my-content').css(`
+                a {
+                    color: rgb(33, 162, 237);
+
+                    text-decoration: none;
+
+                    transition: all .25s ease-in-out;
+                }
+
+                ul {
+                    padding: 0;
+
+                    list-style-type: none;
+                }
+
+                ul > li {
+                    padding: 5px 10px;
+                }
+
+                ul > li:nth-of-type(odd) {
+                    background-color: rgba(255,255,255,.5);
+                }
+            `);
+
+            $('#my-content a').on('mouseenter', function () {
+                $(this).css('color: rgb(115, 182, 221)');
+            }).on('mouseleave', function () {
+                $(this).css('color: rgb(33, 162, 237)');
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="my-content">
+    <ul>
+        <li>
+            <a href="raw-css.html" data-trans="0"></a>
+        </li>
+
+        <li>
+            <a href="raw-css-block.html" data-trans="3"></a>
+        </li>
+
+        <li>
+            <a href="copy-css.html" data-trans="1"></a>
+        </li>
+
+        <li>
+            <a href="take-give-css.html" data-trans="2"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
