@@ -1,6 +1,6 @@
 **![English](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/GB.png) Languages** | **Links**
 ----|----
-[![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png)](README.fr.md)_ | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
+[![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png)](README.fr.md) | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
 ----|----
 
 # jQuery CSS Extender
