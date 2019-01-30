@@ -1,6 +1,7 @@
 (function ($) {
     /**
      * Activates or deactivates the use of CSS history. If null, gets if the system's state.
+     * @function external:"jQuery.fn".useCssHistorySystem
      * @param {boolean|null} use
      * @returns {jQuery|boolean}
      */
@@ -32,6 +33,7 @@
 
     /**
      * Deactives the use of CSS history for the next execution of .css() only.
+     * @function external:"jQuery.fn".forgetCssHistorySystemOnce
      * @returns {jQuery}
      */
     $.fn.forgetCssHistorySystemOnce = function () {
@@ -46,6 +48,7 @@
 
     /**
      * Gets CSS history or pushes a new item in the history.
+     * @function external:"jQuery.fn".cssHistory
      * @param {object|null} css
      * @returns {array}
      */
@@ -103,6 +106,7 @@
 
     /**
      * Gets an entry in CSS history.
+     * @function external:"jQuery.fn".getCssHistory
      * @param {number} id
      * @returns {object}
      */
@@ -112,6 +116,7 @@
 
     /**
      * Gets current entry in CSS history.
+     * @function external:"jQuery.fn".getCurrentCss
      * @returns {object}
      */
     $.fn.getCurrentCss = function () {
@@ -120,6 +125,7 @@
 
     /**
      * Gets last entry in CSS history.
+     * @function external:"jQuery.fn".getLastCss
      * @returns {object}
      */
     $.fn.getLastCss = function () {
@@ -128,6 +134,7 @@
 
     /**
      * Gets previous entry in CSS history.
+     * @function external:"jQuery.fn".getPreviousCss
      * @returns {object}
      */
     $.fn.getPreviousCss = function () {
@@ -142,6 +149,7 @@
 
     /**
      * Gets next entry in CSS history.
+     * @function external:"jQuery.fn".getNextCss
      * @returns {object}
      */
     $.fn.getNextCss = function () {
@@ -156,6 +164,7 @@
 
     /**
      * Uses a previous CSS taken from the history.
+     * @function external:"jQuery.fn".useCssFromHistory
      * @param {number} id
      * @param {string|array|null} properties
      * @returns {jQuery}
@@ -180,6 +189,7 @@
 
     /**
      * Uses the previous used CSS rules.
+     * @function external:"jQuery.fn".usePreviousCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -196,6 +206,7 @@
 
     /**
      * Uses the next used CSS rules.
+     * @function external:"jQuery.fn".useNextCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -212,6 +223,7 @@
 
     /**
      * Uses the last used CSS rules from history.
+     * @function external:"jQuery.fn".useLastCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -221,6 +233,7 @@
 
     /**
      * Empties the CSS history.
+     * @function external:"jQuery.fn".emptyCssHistory
      * @returns {jQuery}
      */
     $.fn.emptyCssHistory = function () {

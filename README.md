@@ -1,6 +1,6 @@
 **![English](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/GB.png) Languages** | **Links**
 ----|----
-[![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png)](README.fr.md) | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
+[![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png)](README.fr.md) | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion) \| [Documentations](doc/DOCUMENTATION.md)_
 
 # jQuery CSS Extender
 
@@ -11,7 +11,6 @@
    - [Reset CSS to default](#reset-css-to-default)
    - [CSS history](#css-history)
    - [CSS states](#css-states)
-- [API](#api)
 - [To do before v1.0.0 release](#to-do-before-v100-release)
 
 ---
@@ -236,10 +235,6 @@ $('#element')
     .cssState('click', {...})
     .autoCssStateOn();
 ```
-
-## API
-
-TODO
 
 ## To do before v1.0.0 release
 

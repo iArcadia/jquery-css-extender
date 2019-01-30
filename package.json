@@ -5,7 +5,8 @@
   "dependencies": {},
   "devDependencies": {
     "babel-minify": "^0.5.0",
-    "fuse": "^0.4.0"
+    "fuse": "^0.4.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +18,7 @@
   "author": "Kévin Bibollet",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/iArcadia/jquery-css-extender/issues"
+    "url": "https://github.com/iArcadia/jquery-css-extender/labels/bug"
   },
   "homepage": "https://github.com/iArcadia/jquery-css-extender#readme"
 }

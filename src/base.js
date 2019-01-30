@@ -65,6 +65,7 @@
 
     /**
      * Adds CSS rules from a CSS-formated string.
+     * @function external:"jQuery.fn".rawCss
      * @param {string} css
      * @returns {jQuery}
      */
@@ -96,6 +97,7 @@
 
     /**
      * Handles CSS rules found into blocks and adds them to elements found with selectors.
+     * @function external:"jQuery.fn".rawCssBlock
      * @param {string} css
      * @returns {jQuery}
      */
@@ -128,6 +130,7 @@
 
     /**
      * Gets computed CSS rules.
+     * @function external:"jQuery.fn".getComputedCss
      * @param {string|array|null} properties
      * @param {bool} excludingLoop
      * @returns {object}
@@ -156,6 +159,7 @@
 
     /**
      * Gets all CSS rules that are differents from the original ones.
+     * @function external:"jQuery.fn".getDifferencesFromDefaultCss
      * @param {string|array|null} properties
      * @returns {object}
      */
@@ -288,13 +292,10 @@
     };
 
     /**
-     * Copies CSS rules of a jQuery object.
+     * If the original element have no history (because its style comes from a CSS file, <style> tags) or the history system has ben disabled, the element which wants to copy will take ALL computed rules of the target one. Else, it will take all changed rules since the beginning.
      *
-     * If the original element have no history (because its style comes from a CSS file, <style> tags)
-     * or the history system has ben disabled, the element which wants to copy will take ALL computed
-     * rules of the target one.
-     * Else, it will take all changed rules since the beginning.
-     *
+     * @summary Copies CSS rules of a jQuery object.
+     * @function external:"jQuery.fn".copyCss
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -334,6 +335,7 @@
 
     /**
      * Copies its own CSS rules to a jQuery object.
+     * @function external:"jQuery.fn".copyCssTo
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -347,6 +349,7 @@
 
     /**
      * Copies CSS rules then resets rules of a jQuery object.
+     * @function external:"jQuery.fn".takeCss
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -388,6 +391,7 @@
 
     /**
      * Copies its own CSS rules to a jQuery object then resets its rules.
+     * @function external:"jQuery.fn".giveCssTo
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -401,6 +405,7 @@
 
     /**
      * Sets CSS rules to browser default ones.
+     * @function external:"jQuery.fn".resetCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */

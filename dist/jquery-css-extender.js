@@ -279,6 +279,7 @@
 
     /**
      * Adds CSS rules from a CSS-formated string.
+     * @function external:"jQuery.fn".rawCss
      * @param {string} css
      * @returns {jQuery}
      */
@@ -310,6 +311,7 @@
 
     /**
      * Handles CSS rules found into blocks and adds them to elements found with selectors.
+     * @function external:"jQuery.fn".rawCssBlock
      * @param {string} css
      * @returns {jQuery}
      */
@@ -342,6 +344,7 @@
 
     /**
      * Gets computed CSS rules.
+     * @function external:"jQuery.fn".getComputedCss
      * @param {string|array|null} properties
      * @param {bool} excludingLoop
      * @returns {object}
@@ -370,6 +373,7 @@
 
     /**
      * Gets all CSS rules that are differents from the original ones.
+     * @function external:"jQuery.fn".getDifferencesFromDefaultCss
      * @param {string|array|null} properties
      * @returns {object}
      */
@@ -502,13 +506,10 @@
     };
 
     /**
-     * Copies CSS rules of a jQuery object.
+     * If the original element have no history (because its style comes from a CSS file, <style> tags) or the history system has ben disabled, the element which wants to copy will take ALL computed rules of the target one. Else, it will take all changed rules since the beginning.
      *
-     * If the original element have no history (because its style comes from a CSS file, <style> tags)
-     * or the history system has ben disabled, the element which wants to copy will take ALL computed
-     * rules of the target one.
-     * Else, it will take all changed rules since the beginning.
-     *
+     * @summary Copies CSS rules of a jQuery object.
+     * @function external:"jQuery.fn".copyCss
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -548,6 +549,7 @@
 
     /**
      * Copies its own CSS rules to a jQuery object.
+     * @function external:"jQuery.fn".copyCssTo
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -561,6 +563,7 @@
 
     /**
      * Copies CSS rules then resets rules of a jQuery object.
+     * @function external:"jQuery.fn".takeCss
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -602,6 +605,7 @@
 
     /**
      * Copies its own CSS rules to a jQuery object then resets its rules.
+     * @function external:"jQuery.fn".giveCssTo
      * @param {jQuery} $obj
      * @param {string|array|null} properties
      * @param {boolean} excludingLoop
@@ -615,6 +619,7 @@
 
     /**
      * Sets CSS rules to browser default ones.
+     * @function external:"jQuery.fn".resetCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -636,6 +641,7 @@
 (function ($) {
     /**
      * Activates or deactivates the use of CSS history. If null, gets if the system's state.
+     * @function external:"jQuery.fn".useCssHistorySystem
      * @param {boolean|null} use
      * @returns {jQuery|boolean}
      */
@@ -667,6 +673,7 @@
 
     /**
      * Deactives the use of CSS history for the next execution of .css() only.
+     * @function external:"jQuery.fn".forgetCssHistorySystemOnce
      * @returns {jQuery}
      */
     $.fn.forgetCssHistorySystemOnce = function () {
@@ -681,6 +688,7 @@
 
     /**
      * Gets CSS history or pushes a new item in the history.
+     * @function external:"jQuery.fn".cssHistory
      * @param {object|null} css
      * @returns {array}
      */
@@ -738,6 +746,7 @@
 
     /**
      * Gets an entry in CSS history.
+     * @function external:"jQuery.fn".getCssHistory
      * @param {number} id
      * @returns {object}
      */
@@ -747,6 +756,7 @@
 
     /**
      * Gets current entry in CSS history.
+     * @function external:"jQuery.fn".getCurrentCss
      * @returns {object}
      */
     $.fn.getCurrentCss = function () {
@@ -755,6 +765,7 @@
 
     /**
      * Gets last entry in CSS history.
+     * @function external:"jQuery.fn".getLastCss
      * @returns {object}
      */
     $.fn.getLastCss = function () {
@@ -763,6 +774,7 @@
 
     /**
      * Gets previous entry in CSS history.
+     * @function external:"jQuery.fn".getPreviousCss
      * @returns {object}
      */
     $.fn.getPreviousCss = function () {
@@ -777,6 +789,7 @@
 
     /**
      * Gets next entry in CSS history.
+     * @function external:"jQuery.fn".getNextCss
      * @returns {object}
      */
     $.fn.getNextCss = function () {
@@ -791,6 +804,7 @@
 
     /**
      * Uses a previous CSS taken from the history.
+     * @function external:"jQuery.fn".useCssFromHistory
      * @param {number} id
      * @param {string|array|null} properties
      * @returns {jQuery}
@@ -815,6 +829,7 @@
 
     /**
      * Uses the previous used CSS rules.
+     * @function external:"jQuery.fn".usePreviousCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -831,6 +846,7 @@
 
     /**
      * Uses the next used CSS rules.
+     * @function external:"jQuery.fn".useNextCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -847,6 +863,7 @@
 
     /**
      * Uses the last used CSS rules from history.
+     * @function external:"jQuery.fn".useLastCss
      * @param {string|array|null} properties
      * @returns {jQuery}
      */
@@ -856,6 +873,7 @@
 
     /**
      * Empties the CSS history.
+     * @function external:"jQuery.fn".emptyCssHistory
      * @returns {jQuery}
      */
     $.fn.emptyCssHistory = function () {
@@ -866,6 +884,7 @@
 (function ($) {
     /**
      * Gets all, or one CSS state, or pushes a new item in the state list.
+     * @function external:"jQuery.fn".cssState
      * @param {string|null}
      * @param {object|null} css
      * @returns {object}
@@ -910,6 +929,7 @@
 
     /**
      * Creates a CSS state from current element style.
+     * @function external:"jQuery.fn".cssStateFromCurrent
      * @param {string} id
      * @returns {jQuery}
      */
@@ -919,6 +939,7 @@
 
     /**
      * Creates the CSS state by default from current element style.
+     * @function external:"jQuery.fn".defaultCssStateFromCurrent
      * @returns {jQuery}
      */
     $.fn.defaultCssStateFromCurrent = function () {
@@ -927,6 +948,7 @@
 
     /**
      * Creates the CSS state by default.
+     * @function external:"jQuery.fn".defaultCssState
      * @param {object|null} css
      * @returns {jQuery}
      */
@@ -940,6 +962,7 @@
 
     /**
      * Uses the default CSS state.
+     * @function external:"jQuery.fn".useDefaultCssState
      * @returns {jQuery}
      */
     $.fn.useDefaultCssState = function () {
@@ -948,6 +971,7 @@
 
     /**
      * Uses a CSS state.
+     * @function external:"jQuery.fn".useCssFromState
      * @param {string} id
      * @returns {jQuery}
      */
@@ -957,6 +981,7 @@
 
     /**
      * Creates an event listener which will be associated to a CSS state.
+     * @function external:"jQuery.fn".cssStateOn
      * @param {string} eventType
      * @param {string} id
      * @returns {jQuery}
@@ -975,6 +1000,7 @@
 
     /**
      * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
+     * @function external:"jQuery.fn".cssStateOnHover
      * @param {string} id - Default value: hover
      */
     $.fn.cssStateOnHover = function (id = 'hover') {
@@ -987,6 +1013,7 @@
 
     /**
      * Loops through all CSS states. For each one, creates and associates an event listener.
+     * @function external:"jQuery.fn".autoCssStateOn
      * @param {array} excludedStates - Default value: []
      * @returns {jQuery}
      */
@@ -1006,3 +1033,10 @@
         return this;
     };
 }(jQuery));
+
+
+/**
+ * The jQuery plugin namespace.
+ * @external "jQuery.fn"
+ * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
+ */
