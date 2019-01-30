@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
 
-    <title>jQuery CSS Extender - Raw CSS</title>
+    <title>jQuery CSS Extender - CSS State</title>
 
     <!-- Code Mirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css"/>
@@ -28,49 +28,61 @@
         $(document).on('translationready', function () {
             pushTranslation('example', {
                 en: "Example:",
-                fr: "Exemple:",
+                fr: "Exemple :",
                 _after: ' '
             });
 
             pushTranslation('subtitle', {
-                en: "using raw CSS in .css()",
-                fr: "utilisation de CSS pur dans .css()"
+                en: "usage of CSS states and event listeners",
+                fr: "utilisation d'états CSS et écouteurs d'événements"
             });
 
             pushTranslation('description', {
-                en: "The below button has been styled with raw CSS. No CSS file included.",
-                fr: "Le bouton ci-dessous a été stylisé avec du CSS pure. Aucun fichier CSS inclus."
-            });
-
-            pushTranslation(0, {
-                en: $('[data-trans="0"]').first().text(),
-                fr: "Bouton"
+                en: "A default state was created from the original style. Two other states 'hover' and 'click' was attributed. A first listener has been automatically linked to the 'hover' state and a second one is manually linked to the 'click' state.",
+                fr: "Un état par défaut a été créé à partir du style d'origine. Deux autres états 'hover' et 'click' ont été attribués. Un premier écouteur a été lié automatiquement à l'état 'hover', et un second écouteur est lié manuellement à l'état 'click'."
             });
 
             translate();
 
             // <codemirror-content>
-            $('#button').css(`
-                margin: 0 auto;
-                padding: 10px 20px;
-                display: block;
+            let $button = $('button');
 
-                font-size: 20px;
+            $button.css({
+                'padding': '5px 10px',
 
-                background-color: #ddd;
-                border: 0;
-                border-radius: 5px;
-                box-shadow: 0 3px 0 #bbb;
+                'font-size': '20px',
 
-                cursor: pointer;
-            `);
+                'background-color': '#ddd',
+                'border': '0',
+                'border-radius': '5px',
+                'outline': 'none',
+
+                'transition': 'all .25s ease-in-out'
+            })
+                .defaultCssStateFromCurrent()
+                .cssState('hover', {
+                    'background-color': '#eee',
+                    'cursor': 'pointer'
+                }).cssState('click', {
+                'background-color': '#aaa',
+            });
+
+            $button.autoCssStateOn(['click']);
+
+            $button.on('click', function () {
+                $button.useCssFromState('click');
+
+                setTimeout(function () {
+                    $button.useCssFromState('hover');
+                }, 100);
+            });
             // </codemirror-content>
         });
     </script>
 </head>
 <body>
 <div id="my-content">
-    <button id="button" data-trans="0">Button</button>
+    <button id="button">Button</button>
 </div>
 </body>
 </html>

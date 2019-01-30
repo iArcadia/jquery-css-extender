@@ -1,25 +1,23 @@
 function buildPage() {
-    let $body = $('body').css(`margin: 0`);
+    let $body = $('body').css(`
+        margin: 0;
+        padding: 10vh 0;
+        
+        background: linear-gradient(#ededed, #eee, #eaeaea);
+    `);
 
     let $container = $('<div>').attr('id', 'container').css(`
         width: 100%;
-        height: 100vh;
-        background: linear-gradient(#ededed, #eee, #eaeaea);
     `).appendTo($body);
 
     let $block = $('<div>').attr('id', 'block').css(`
-        position: fixed;
-        top: 50%;
-        left: 50%;
-
+        margin: 0 auto;
+    
         width: 80%;
-        height: 80%;
 
         background-color: #fff;
         border-radius: 3px;
         box-shadow: 0 0 20px rgba(0,0,0,.25);
-
-        transform: translate(-50%, -50%);
     `).appendTo($container);
 
     let $blockHeader = $('<div>').attr('id', 'block-header').css(`
