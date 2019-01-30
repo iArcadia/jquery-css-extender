@@ -11,11 +11,11 @@
    - [Reset CSS to default](#reset-css-to-default)
    - [CSS history](#css-history)
    - [CSS states](#css-states)
-- [To do before v1.0.0 release](#to-do-before-v100-release)
 
 ---
 
-jQuery CSS Extender is a jQuery plugin which adds many CSS-relative methods. Its first goal was to read CSS-formated strings using the `.css()` method. Once done, I have had other ideas that I decided to implement.
+jQuery CSS Extender is a jQuery plugin which adds many CSS-relative methods. Its first goal was to read CSS-formated strings using the `.css()` method.
+Once done, I have had other ideas that I decided to implement.
 
 ## Installation
 
@@ -235,13 +235,3 @@ $('#element')
     .cssState('click', {...})
     .autoCssStateOn();
 ```
-
-## To do before v1.0.0 release
-
-- Development
-   - [x] CSS states
-   - [ ] Finish examples
-- GitHub
-   - [ ] Finish README.md
-   - [ ] Finish README.fr.md
-   - [x] Issue template

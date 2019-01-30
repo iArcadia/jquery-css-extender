@@ -11,8 +11,6 @@
    - [Réinitialiser le CSS](#reinitialiser-le-css)
    - [Historique CSS](#historique-css)
    - [Etats CSS](#etats-css)
-- [API](#api)
-- [Todo avant la sortie de la v1.0.0](#todo-avant-la-sortie-de-la-v100)
 
 ---
 
@@ -237,17 +235,3 @@ $('#element')
     .cssState('click', {...})
     .autoCssStateOn();
 ```
-
-## API
-
-TODO
-
-## Todo avant la sortie de la v1.0.0
-
-- Développement
-  - [x] Etats CSS
-  - [ ] Terminer les exemples
-- GitHub
-  - [ ] Terminer README.md
-  - [ ] Terminer README.fr.md
-  - [x] Template Issue

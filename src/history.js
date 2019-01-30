@@ -65,8 +65,11 @@
      * @returns {boolean}
      */
     $.fn.canPushIntoCssHistory = function () {
-        return (this.data('__cssUseHistorySystem') === true
-            && this.data('__cssForgetHistorySystemOnce') === false);
+        let canUseHistorySystem = this.data('__cssUseHistorySystem');
+        let forgetHistorySystemOnce = this.data('__cssForgetHistorySystemOnce');
+
+        return ((canUseHistorySystem === true || $.cssExtender.fn.typeOf(canUseHistorySystem, 'is', 'undefined'))
+            && (forgetHistorySystemOnce === false || $.cssExtender.fn.typeOf(forgetHistorySystemOnce, 'is', 'undefined')));
     }
 
     /**

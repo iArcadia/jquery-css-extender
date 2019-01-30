@@ -53,7 +53,7 @@
             if (execOriginalCases[i]) {
                 fnCss.apply(this, arguments);
 
-                if (canPushIntoHistory && this.data('__cssForgetHistorySystemOnce') !== true) {
+                if (canPushIntoHistory && this.canPushIntoCssHistory()) {
                     this.cssHistory(toPushIntoHistory);
                 }
 
