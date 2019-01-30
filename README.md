@@ -2,7 +2,7 @@ _**English** | [Français](README.fr.md)_
 
 # jQuery CSS Extender
 
-_[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) | [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature suggestion)_
+_[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) | [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
 
 ---
 
