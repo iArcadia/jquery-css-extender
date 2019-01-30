@@ -1,11 +1,3 @@
-## Members
-
-<dl>
-<dt><a href="#external_jQuery.cssExtender.fn">external:jQuery.cssExtender.fn</a> : <code>Object.&lt;string, function()&gt;</code></dt>
-<dd><p>The jQuery CSS Extender internal methods namespace.</p>
-</dd>
-</dl>
-
 ## External
 
 <dl>
@@ -15,64 +7,7 @@
 <dt><a href="#external_jQuery.fn">jQuery.fn</a></dt>
 <dd><p>The jQuery plugin namespace.</p>
 </dd>
-<dt><a href="#external_jQuery.cssExtender">jQuery.cssExtender</a></dt>
-<dd><p>The jQuery CSS Extender namespace.</p>
-</dd>
-<dt><a href="#external_jQuery.cssExtender.fn">jQuery.cssExtender.fn</a></dt>
-<dd><p>The jQuery CSS Extender internal methods namespace.</p>
-</dd>
 </dl>
-
-<a name="external_jQuery.cssExtender.fn"></a>
-
-## external:jQuery.cssExtender.fn : <code>Object.&lt;string, function()&gt;</code>
-The jQuery CSS Extender internal methods namespace.
-
-**Kind**: global variable  
-
-* [external:jQuery.cssExtender.fn](#external_jQuery.cssExtender.fn) : <code>Object.&lt;string, function()&gt;</code>
-    * [.mergeAllChangedRulesFromLast($self)](#external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast) ⇒ <code>Object.&lt;string, string&gt;</code>
-    * [.typeOf(property, checkType, type)](#external_jQuery.cssExtender.fn.typeOf) ⇒ <code>boolean</code> \| <code>null</code>
-    * [.generateError(property, origin, position, correctTypes, [errorType])](#external_jQuery.cssExtender.fn.generateError)
-
-<a name="external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast"></a>
-
-### external:jQuery.cssExtender.fn.mergeAllChangedRulesFromLast($self) ⇒ <code>Object.&lt;string, string&gt;</code>
-Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type |
-| --- | --- |
-| $self | <code>jQuery</code> | 
-
-<a name="external_jQuery.cssExtender.fn.typeOf"></a>
-
-### external:jQuery.cssExtender.fn.typeOf(property, checkType, type) ⇒ <code>boolean</code> \| <code>null</code>
-Executes a callback if the property has the correct type.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| property | <code>\*</code> |  |
-| checkType | <code>string</code> | Possible values: = | == | === | is | != | !== | is not |
-| type | <code>\*</code> |  |
-
-<a name="external_jQuery.cssExtender.fn.generateError"></a>
-
-### external:jQuery.cssExtender.fn.generateError(property, origin, position, correctTypes, [errorType])
-Throws a custom error.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| property | <code>\*</code> |  | 
-| origin | <code>string</code> |  | 
-| position | <code>number</code> |  | 
-| correctTypes | <code>Array.&lt;string&gt;</code> |  | 
-| [errorType] | <code>string</code> | <code>&quot;Error&quot;</code> | 
 
 <a name="external_jQuery"></a>
 
@@ -446,87 +381,4 @@ Loops through all CSS states. For each one, creates and associates an event list
 | Param | Type | Default |
 | --- | --- | --- |
 | [excludedStates] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | 
-
-<a name="external_jQuery.cssExtender"></a>
-
-## jQuery.cssExtender
-The jQuery CSS Extender namespace.
-
-**Kind**: global external  
-**See**: [https://github.com/iArcadia/jquery-css-extender](https://github.com/iArcadia/jquery-css-extender)  
-
-* [jQuery.cssExtender](#external_jQuery.cssExtender)
-    * [.name](#external_jQuery.cssExtender.name) : <code>string</code>
-    * [.version](#external_jQuery.cssExtender.version) : <code>string</code>
-    * [.github](#external_jQuery.cssExtender.github) : <code>string</code>
-
-<a name="external_jQuery.cssExtender.name"></a>
-
-### jQuery.cssExtender.name : <code>string</code>
-Name of the plugin.
-
-**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
-<a name="external_jQuery.cssExtender.version"></a>
-
-### jQuery.cssExtender.version : <code>string</code>
-Current version of the plugin.
-
-**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
-<a name="external_jQuery.cssExtender.github"></a>
-
-### jQuery.cssExtender.github : <code>string</code>
-GitHub repository URL of the plugin.
-
-**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
-<a name="external_jQuery.cssExtender.fn"></a>
-
-## jQuery.cssExtender.fn
-The jQuery CSS Extender internal methods namespace.
-
-**Kind**: global external  
-**See**: [https://github.com/iArcadia/jquery-css-extender](https://github.com/iArcadia/jquery-css-extender)  
-
-* [jQuery.cssExtender.fn](#external_jQuery.cssExtender.fn)
-    * [.mergeAllChangedRulesFromLast($self)](#external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast) ⇒ <code>Object.&lt;string, string&gt;</code>
-    * [.typeOf(property, checkType, type)](#external_jQuery.cssExtender.fn.typeOf) ⇒ <code>boolean</code> \| <code>null</code>
-    * [.generateError(property, origin, position, correctTypes, [errorType])](#external_jQuery.cssExtender.fn.generateError)
-
-<a name="external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast"></a>
-
-### external:jQuery.cssExtender.fn.mergeAllChangedRulesFromLast($self) ⇒ <code>Object.&lt;string, string&gt;</code>
-Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type |
-| --- | --- |
-| $self | <code>jQuery</code> | 
-
-<a name="external_jQuery.cssExtender.fn.typeOf"></a>
-
-### external:jQuery.cssExtender.fn.typeOf(property, checkType, type) ⇒ <code>boolean</code> \| <code>null</code>
-Executes a callback if the property has the correct type.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| property | <code>\*</code> |  |
-| checkType | <code>string</code> | Possible values: = | == | === | is | != | !== | is not |
-| type | <code>\*</code> |  |
-
-<a name="external_jQuery.cssExtender.fn.generateError"></a>
-
-### external:jQuery.cssExtender.fn.generateError(property, origin, position, correctTypes, [errorType])
-Throws a custom error.
-
-**Kind**: static method of [<code>external:jQuery.cssExtender.fn</code>](#external_jQuery.cssExtender.fn)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| property | <code>\*</code> |  | 
-| origin | <code>string</code> |  | 
-| position | <code>number</code> |  | 
-| correctTypes | <code>Array.&lt;string&gt;</code> |  | 
-| [errorType] | <code>string</code> | <code>&quot;Error&quot;</code> | 
 

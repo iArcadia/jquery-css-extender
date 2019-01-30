@@ -1,8 +1,9 @@
 (function ($) {
-    /** @var {string} external:"jQuery.cssExtender".name - Name of the plugin. */
-    /** @var {string} external:"jQuery.cssExtender".version - Current version of the plugin. */
-    /** @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin. */
-    /** @var {Object.<string, Function>} external:"jQuery.cssExtender.fn" - The jQuery CSS Extender internal methods namespace. */
+    /** @var {Object.<string, (string|Object)>} jQuery.cssExtender - The jQuery CSS Extender plugin namespace. */
+    /** @var {string} jQuery.cssExtender.name - Name of the plugin. */
+    /** @var {string} jQuery.cssExtender.version - Current version of the plugin. */
+    /** @var {string} jQuery.cssExtender.github - GitHub repository URL of the plugin. */
+    /** @var {Object.<string, Function>} jQuery.cssExtender.fn - The jQuery CSS Extender internal methods namespace. */
     $.cssExtender = {
         name: 'jQuery CSS Extender',
         version: '1.0.0',
@@ -12,7 +13,7 @@
 
     /**
      * Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
-     * @function external:"jQuery.cssExtender.fn".mergeAllChangedRulesFromLast
+     * @function jQuery.cssExtender.fn.mergeAllChangedRulesFromLast
      * @param {jQuery} $self
      * @returns {Object.<string, string>}
      */
@@ -30,7 +31,7 @@
 
     /**
      * Executes a callback if the property has the correct type.
-     * @function external:"jQuery.cssExtender.fn".typeOf
+     * @function jQuery.cssExtender.fn.typeOf
      * @param {*} property
      * @param {string} checkType - Possible values: = | == | === | is | != | !== | is not
      * @param {*} type
@@ -83,7 +84,7 @@
 
     /**
      * Throws a custom error.
-     * @function external:"jQuery.cssExtender.fn".generateError
+     * @function jQuery.cssExtender.fn.generateError
      * @param {*} property
      * @param {string} origin
      * @param {number} position
