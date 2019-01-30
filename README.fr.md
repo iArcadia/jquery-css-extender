@@ -4,6 +4,10 @@
 
 # jQuery CSS Extender
 
+![Dernier commit](https://img.shields.io/github/last-commit/iArcadia/jquery-css-extender.svg?style=flat)
+![Version](https://img.shields.io/github/package-json/v/iArcadia/jquery-css-extender.svg?style=flat)
+![License](https://img.shields.io/github/license/iArcadia/jquery-css-extender.svg?style=flat)
+
 - [Installation](#installation)
 - [Usage simple](#usage-simple)
    - [CSS pur](#css-pur)
