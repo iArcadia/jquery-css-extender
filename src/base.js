@@ -10,7 +10,7 @@
      * Overrides the original .css() method.
      * @see {@link http://api.jquery.com/css/}
      * @function external:"jQuery.fn".css
-     * @returns {@link jQuery}
+     * @returns {jQuery}
      */
     let fnCss = $.fn.css;
     $.fn.css = function () {

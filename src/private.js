@@ -2,6 +2,7 @@
     /** @var {string} external:"jQuery.cssExtender".name - Name of the plugin. */
     /** @var {string} external:"jQuery.cssExtender".version - Current version of the plugin. */
     /** @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin. */
+    /** @var {Object.<string, Function>} external:"jQuery.cssExtender.fn" - The jQuery CSS Extender internal methods namespace. */
     $.cssExtender = {
         name: 'jQuery CSS Extender',
         version: '1.0.0',
@@ -11,8 +12,9 @@
 
     /**
      * Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
+     * @function external:"jQuery.cssExtender.fn".mergeAllChangedRulesFromLast
      * @param {jQuery} $self
-     * @returns {object}
+     * @returns {Object.<string, string>}
      */
     $.cssExtender.fn.mergeAllChangedRulesFromLast = function ($self) {
         let histories = $self.cssHistory();
@@ -28,10 +30,11 @@
 
     /**
      * Executes a callback if the property has the correct type.
+     * @function external:"jQuery.cssExtender.fn".typeOf
      * @param {*} property
-     * @param {string} checkType - Possible values: =, ==, ===, is, !=, !==, is not
-     * @param {string|object} type
-     * @returns {*}
+     * @param {string} checkType - Possible values: = | == | === | is | != | !== | is not
+     * @param {*} type
+     * @returns {(boolean|null)}
      */
     $.cssExtender.fn.typeOf = function (property, checkType, type) {
         let check = null;
@@ -80,11 +83,12 @@
 
     /**
      * Throws a custom error.
+     * @function external:"jQuery.cssExtender.fn".generateError
      * @param {*} property
      * @param {string} origin
      * @param {number} position
-     * @param {array} correctTypes
-     * @param {string} errorType
+     * @param {Array.<string>} correctTypes
+     * @param {string} [errorType=Error]
      */
     $.cssExtender.fn.generateError = function (property, origin, position, correctTypes, errorType = 'Error') {
         let propIsNotNull = $.cssExtender.fn.typeOf(property, '!==', null);
@@ -146,10 +150,10 @@
 
     /**
      * Checks the optional argument "properties" used in many methods.
-     * @param {string|array|null} properties
+     * @param {(string|array|null)} properties
      * @param {string} origin
-     * @param {number|string} positionInArgs
-     * @returns {array}
+     * @param {(number|string)} positionInArgs
+     * @returns {Array.<string>}
      */
     $.cssExtender.fn.handlePropertiesOptionalArgument = function (properties, origin, positionInArgs) {
         if (typeof properties === 'string') {
@@ -181,7 +185,7 @@
 
     /**
      * Returns all methods of the plugin.
-     * @returns {array}
+     * @returns {Array.<string>}
      */
     $.cssExtender.fn.getAllPluginMethods = function () {
         return [
