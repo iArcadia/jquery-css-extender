@@ -1,8 +1,10 @@
-# jQuery CSS Extender
-
 _**English** | [Français](README.fr.md)_
 
-_[Bugs](labels/bug)_
+# jQuery CSS Extender
+
+_[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) | [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature suggestion)_
+
+---
 
 - [Installation](#installation)
 - [Basic usage](#basic-usage)
