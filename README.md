@@ -1,6 +1,17 @@
 # jQuery CSS Extender
 
-_**English** | [Français](https://github.com/iArcadia/jquery-css-extender/blob/master/README.fr.md)_
+_**English** | [Français](README.fr.md)_
+_[Bugs](/labels/bug)_
+
+- [Installation](#installation)
+- [Basic usage](#basic-usage)
+   - [Raw CSS](#raw-css)
+   - [Copy CSS between jQuery object](#copy-css-between-jquery-object)
+   - [Reset CSS to default](#reset-css-to-default)
+   - [CSS history](#css-history)
+   - [CSS states](#css-states)
+- [API](#api)
+- [To do before v1.0.0 release](#to-do-before-v100-release)
 
 ---
 
@@ -68,7 +79,7 @@ $('#element').css(`
 Note that all selectors written before `:this` will **not be taken into account**.  
 Note also that `> button` and `:this > button` are the same things.
 
-### Copy CSS bewteen jQuery object
+### Copy CSS between jQuery object
 
 You have two buttons, you styled the first and want your second to have the exact same color, background-color, border and border-radius? No problem.
 
