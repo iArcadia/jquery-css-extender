@@ -15,6 +15,64 @@
 The jQuery namespace.
 
 **Kind**: global external  
+
+* [jQuery](#external_jQuery)
+    * [.cssExtender](#external_jQuery.cssExtender) : <code>Object.&lt;string, (string\|Object)&gt;</code>
+        * [.name](#external_jQuery.cssExtender.name) : <code>string</code>
+        * [.version](#external_jQuery.cssExtender.version) : <code>string</code>
+        * [.github](#external_jQuery.cssExtender.github) : <code>string</code>
+        * [.fn](#external_jQuery.cssExtender.fn) : <code>Object.&lt;string, function()&gt;</code>
+            * [.mergeAllChangedRulesFromLast($self)](#external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast) ⇒ <code>Object.&lt;string, string&gt;</code>
+
+<a name="external_jQuery.cssExtender"></a>
+
+### jQuery.cssExtender : <code>Object.&lt;string, (string\|Object)&gt;</code>
+The jQuery CSS Extender plugin namespace.
+
+**Kind**: static property of [<code>jQuery</code>](#external_jQuery)  
+
+* [.cssExtender](#external_jQuery.cssExtender) : <code>Object.&lt;string, (string\|Object)&gt;</code>
+    * [.name](#external_jQuery.cssExtender.name) : <code>string</code>
+    * [.version](#external_jQuery.cssExtender.version) : <code>string</code>
+    * [.github](#external_jQuery.cssExtender.github) : <code>string</code>
+    * [.fn](#external_jQuery.cssExtender.fn) : <code>Object.&lt;string, function()&gt;</code>
+        * [.mergeAllChangedRulesFromLast($self)](#external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast) ⇒ <code>Object.&lt;string, string&gt;</code>
+
+<a name="external_jQuery.cssExtender.name"></a>
+
+#### cssExtender.name : <code>string</code>
+Name of the plugin.
+
+**Kind**: static property of [<code>cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.version"></a>
+
+#### cssExtender.version : <code>string</code>
+Current version of the plugin.
+
+**Kind**: static property of [<code>cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.github"></a>
+
+#### cssExtender.github : <code>string</code>
+GitHub repository URL of the plugin.
+
+**Kind**: static property of [<code>cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.fn"></a>
+
+#### cssExtender.fn : <code>Object.&lt;string, function()&gt;</code>
+The jQuery CSS Extender internal methods namespace.
+
+**Kind**: static property of [<code>cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast"></a>
+
+##### fn.mergeAllChangedRulesFromLast($self) ⇒ <code>Object.&lt;string, string&gt;</code>
+Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
+
+**Kind**: static method of [<code>fn</code>](#external_jQuery.cssExtender.fn)  
+
+| Param | Type |
+| --- | --- |
+| $self | <code>jQuery</code> | 
+
 <a name="external_jQuery.fn"></a>
 
 ## jQuery.fn

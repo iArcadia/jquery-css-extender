@@ -1,9 +1,20 @@
+/**
+ * The jQuery namespace.
+ * @external "jQuery"
+ */
+
+/**
+ * The jQuery plugin namespace.
+ * @external "jQuery.fn"
+ * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
+ */
+
 (function ($) {
-    /** @var {Object.<string, (string|Object)>} jQuery.cssExtender - The jQuery CSS Extender plugin namespace. */
-    /** @var {string} jQuery.cssExtender.name - Name of the plugin. */
-    /** @var {string} jQuery.cssExtender.version - Current version of the plugin. */
-    /** @var {string} jQuery.cssExtender.github - GitHub repository URL of the plugin. */
-    /** @var {Object.<string, Function>} jQuery.cssExtender.fn - The jQuery CSS Extender internal methods namespace. */
+    /** @var {Object.<string, (string|Object)>} external:"jQuery".cssExtender - The jQuery CSS Extender plugin namespace. */
+    /** @var {string} external:"jQuery.cssExtender".name - Name of the plugin. */
+    /** @var {string} external:"jQuery.cssExtender".version - Current version of the plugin. */
+    /** @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin. */
+    /** @var {Object.<string, Function>} external:"jQuery.cssExtender".fn - The jQuery CSS Extender internal methods namespace. */
     $.cssExtender = {
         name: 'jQuery CSS Extender',
         version: '1.0.0',
@@ -13,7 +24,7 @@
 
     /**
      * Loops through all CSS history of an jQuery object in order to merge all changed rules from an history into one.
-     * @function jQuery.cssExtender.fn.mergeAllChangedRulesFromLast
+     * @function external:"jQuery.cssExtender.fn".mergeAllChangedRulesFromLast
      * @param {jQuery} $self
      * @returns {Object.<string, string>}
      */
@@ -219,6 +230,7 @@
         ];
     }
 }(jQuery));
+
 (function ($) {
     let allPluginMethods = $.cssExtender.fn.getAllPluginMethods();
     for (let i in allPluginMethods) {
@@ -1050,15 +1062,3 @@
         return this;
     };
 }(jQuery));
-
-
-/**
- * The jQuery namespace.
- * @external "jQuery"
- */
-
-/**
- * The jQuery plugin namespace.
- * @external "jQuery.fn"
- * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
- */
