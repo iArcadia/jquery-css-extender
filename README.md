@@ -1,7 +1,8 @@
 # jQuery CSS Extender
 
 _**English** | [Français](README.fr.md)_
-_[Bugs](/labels/bug)_
+
+_[Bugs](labels/bug)_
 
 - [Installation](#installation)
 - [Basic usage](#basic-usage)
