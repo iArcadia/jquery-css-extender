@@ -30,7 +30,7 @@ The jQuery plugin namespace.
 **See**: [The jQuery Plugin Guide](http://docs.jquery.com/Plugins/Authoring)  
 
 * [jQuery.fn](#external_jQuery.fn)
-    * [.css()](#external_jQuery.fn.css) ⇒ <code>external:&quot;jQuery&quot;</code>
+    * [.css()](#external_jQuery.fn.css) ⇒
     * [.rawCss(css)](#external_jQuery.fn.rawCss) ⇒ <code>jQuery</code>
     * [.rawCssBlock(css)](#external_jQuery.fn.rawCssBlock) ⇒ <code>jQuery</code>
     * [.getComputedCss([properties], [excludingLoop])](#external_jQuery.fn.getComputedCss) ⇒ <code>Object.&lt;string, string&gt;</code>
@@ -65,10 +65,11 @@ The jQuery plugin namespace.
 
 <a name="external_jQuery.fn.css"></a>
 
-### jQuery.fn.css() ⇒ <code>external:&quot;jQuery&quot;</code>
+### jQuery.fn.css() ⇒
 Overrides the original .css() method.
 
 **Kind**: static method of [<code>jQuery.fn</code>](#external_jQuery.fn)  
+**Returns**: [jQuery](jQuery)  
 **See**: [http://api.jquery.com/css/](http://api.jquery.com/css/)  
 <a name="external_jQuery.fn.rawCss"></a>
 
@@ -395,10 +396,28 @@ The jQuery CSS Extender namespace.
 
 **Kind**: global external  
 **See**: [https://github.com/iArcadia/jquery-css-extender](https://github.com/iArcadia/jquery-css-extender)  
+
+* [jQuery.cssExtender](#external_jQuery.cssExtender)
+    * [.name](#external_jQuery.cssExtender.name) : <code>string</code>
+    * [.version](#external_jQuery.cssExtender.version) : <code>string</code>
+    * [.github](#external_jQuery.cssExtender.github) : <code>string</code>
+
+<a name="external_jQuery.cssExtender.name"></a>
+
+### jQuery.cssExtender.name : <code>string</code>
+Name of the plugin.
+
+**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.version"></a>
+
+### jQuery.cssExtender.version : <code>string</code>
+Current version of the plugin.
+
+**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
 <a name="external_jQuery.cssExtender.github"></a>
 
 ### jQuery.cssExtender.github : <code>string</code>
-Name of the plugin.
+GitHub repository URL of the plugin.
 
 **Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
 <a name="external_jQuery.cssExtender.fn"></a>
