@@ -1,11 +1,3 @@
-## Members
-
-<dl>
-<dt><a href="#Returns">Returns</a> : <code>object</code></dt>
-<dd><p>plugin information.</p>
-</dd>
-</dl>
-
 ## External
 
 <dl>
@@ -15,14 +7,14 @@
 <dt><a href="#external_jQuery.fn">jQuery.fn</a></dt>
 <dd><p>The jQuery plugin namespace.</p>
 </dd>
+<dt><a href="#external_jQuery.cssExtender">jQuery.cssExtender</a></dt>
+<dd><p>The jQuery CSS Extender namespace.</p>
+</dd>
+<dt><a href="#external_jQuery.cssExtender.fn">jQuery.cssExtender.fn</a></dt>
+<dd><p>The jQuery CSS Extender internal methods namespace.</p>
+</dd>
 </dl>
 
-<a name="Returns"></a>
-
-## Returns : <code>object</code>
-plugin information.
-
-**Kind**: global variable  
 <a name="external_jQuery"></a>
 
 ## jQuery
@@ -38,7 +30,7 @@ The jQuery plugin namespace.
 **See**: [The jQuery Plugin Guide](http://docs.jquery.com/Plugins/Authoring)  
 
 * [jQuery.fn](#external_jQuery.fn)
-    * [.css()](#external_jQuery.fn.css) ⇒ <code>jQuery</code>
+    * [.css()](#external_jQuery.fn.css) ⇒ <code>external:&quot;jQuery&quot;</code>
     * [.rawCss(css)](#external_jQuery.fn.rawCss) ⇒ <code>jQuery</code>
     * [.rawCssBlock(css)](#external_jQuery.fn.rawCssBlock) ⇒ <code>jQuery</code>
     * [.getComputedCss([properties], [excludingLoop])](#external_jQuery.fn.getComputedCss) ⇒ <code>Object.&lt;string, string&gt;</code>
@@ -68,12 +60,12 @@ The jQuery plugin namespace.
     * [.useDefaultCssState()](#external_jQuery.fn.useDefaultCssState) ⇒ <code>jQuery</code>
     * [.useCssFromState(id)](#external_jQuery.fn.useCssFromState) ⇒ <code>jQuery</code>
     * [.cssStateOn(eventType, [id])](#external_jQuery.fn.cssStateOn) ⇒ <code>jQuery</code>
-    * [.cssStateOnHover([id])](#external_jQuery.fn.cssStateOnHover)
+    * [.cssStateOnHover([id])](#external_jQuery.fn.cssStateOnHover) ⇒ <code>jQuery</code>
     * [.autoCssStateOn([excludedStates])](#external_jQuery.fn.autoCssStateOn) ⇒ <code>jQuery</code>
 
 <a name="external_jQuery.fn.css"></a>
 
-### jQuery.fn.css() ⇒ <code>jQuery</code>
+### jQuery.fn.css() ⇒ <code>external:&quot;jQuery&quot;</code>
 Overrides the original .css() method.
 
 **Kind**: static method of [<code>jQuery.fn</code>](#external_jQuery.fn)  
@@ -376,14 +368,14 @@ Creates an event listener which will be associated to a CSS state.
 
 <a name="external_jQuery.fn.cssStateOnHover"></a>
 
-### jQuery.fn.cssStateOnHover([id])
+### jQuery.fn.cssStateOnHover([id]) ⇒ <code>jQuery</code>
 Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
 
 **Kind**: static method of [<code>jQuery.fn</code>](#external_jQuery.fn)  
 
 | Param | Type | Default |
 | --- | --- | --- |
-| [id] | <code>string</code> | <code>&quot;&#x27;hover&#x27;&quot;</code> | 
+| [id] | <code>string</code> | <code>&quot;hover&quot;</code> | 
 
 <a name="external_jQuery.fn.autoCssStateOn"></a>
 
@@ -396,3 +388,23 @@ Loops through all CSS states. For each one, creates and associates an event list
 | --- | --- | --- |
 | [excludedStates] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | 
 
+<a name="external_jQuery.cssExtender"></a>
+
+## jQuery.cssExtender
+The jQuery CSS Extender namespace.
+
+**Kind**: global external  
+**See**: [https://github.com/iArcadia/jquery-css-extender](https://github.com/iArcadia/jquery-css-extender)  
+<a name="external_jQuery.cssExtender.github"></a>
+
+### jQuery.cssExtender.github : <code>string</code>
+Name of the plugin.
+
+**Kind**: static property of [<code>jQuery.cssExtender</code>](#external_jQuery.cssExtender)  
+<a name="external_jQuery.cssExtender.fn"></a>
+
+## jQuery.cssExtender.fn
+The jQuery CSS Extender internal methods namespace.
+
+**Kind**: global external  
+**See**: [https://github.com/iArcadia/jquery-css-extender](https://github.com/iArcadia/jquery-css-extender)  
