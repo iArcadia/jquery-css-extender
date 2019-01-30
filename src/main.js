@@ -72,6 +72,13 @@
      * @param {string} css
      * @returns {jQuery}
      */
+    /**
+     * Adds CSS rules from a CSS-formated string.
+     * @function external:"jQuery".rawCss
+     * @param {HTMLElement} elem
+     * @param {string} css
+     * @returns {jQuery}
+     */
     $.fn.rawCss = function (css) {
         if ($.cssExtender.fn.typeOf(css, 'is not', 'string')) {
             $.cssExtender.fn.generateError(css, 'rawCss', 1, ['string'], 'TypeError');
@@ -101,6 +108,13 @@
     /**
      * Handles CSS rules found into blocks and adds them to elements found with selectors.
      * @function external:"jQuery.fn".rawCssBlock
+     * @param {string} css
+     * @returns {jQuery}
+     */
+    /**
+     * Handles CSS rules found into blocks and adds them to elements found with selectors.
+     * @function external:"jQuery".rawCssBlock
+     * @param {HTMLElement} elem
      * @param {string} css
      * @returns {jQuery}
      */
@@ -138,6 +152,14 @@
      * @param {boolean} [excludingLoop=false]
      * @returns {Object.<string, string>}
      */
+    /**
+     * Gets computed CSS rules.
+     * @function external:"jQuery".getComputedCss
+     * @param {HTMLElement} elem
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {Object.<string, string>}
+     */
     $.fn.getComputedCss = function (properties = null, excludingLoop = false) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getComputedCss');
 
@@ -167,6 +189,13 @@
      * @returns {Object.<string, string>}
      *
      * @todo excludingLoop
+     */
+    /**
+     * Gets all CSS rules that are differents from the original ones.
+     * @function external:"jQuery".getDifferencesFromDefaultCss
+     * @param {HTMLElement} elem
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {Object.<string, string>}
      */
     $.fn.getDifferencesFromDefaultCss = function (properties = null) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getDifferencesFromDefaultCss');
@@ -199,6 +228,10 @@
         return alteredRules;
     };
 
+    /**
+     * Gets all CSS subrules of a shorthand one.
+     * @todo move to internal.js
+     */
     $.fn.getAllCssRulesFromShorthand = function (shorthand) {
         switch (shorthand) {
             case 'animation':
@@ -296,10 +329,25 @@
     };
 
     /**
-     * If the original element have no history (because its style comes from a CSS file, <style> tags) or the history system has ben disabled, the element which wants to copy will take ALL computed rules of the target one. Else, it will take all changed rules since the beginning.
+     * Copies CSS rules of a jQuery object.
+     * If the original element have no history (because its style comes from a CSS file, <style> tags)
+     * or the history system has ben disabled, the element which wants to copy will take ALL computed rules of the target one.
+     * Else, it will take all changed rules since the beginning.
      *
-     * @summary Copies CSS rules of a jQuery object.
      * @function external:"jQuery.fn".copyCss
+     * @param {jQuery} $obj
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {jQuery}
+     */
+    /**
+     * Copies CSS rules of a jQuery object.
+     * If the original element have no history (because its style comes from a CSS file, <style> tags)
+     * or the history system has ben disabled, the element which wants to copy will take ALL computed rules of the target one.
+     * Else, it will take all changed rules since the beginning.
+     *
+     * @function external:"jQuery".copyCss
+     * @param {HTMLElement} elem
      * @param {jQuery} $obj
      * @param {(string|Array.<string>|null)} [properties=null]
      * @param {boolean} [excludingLoop=false]
@@ -345,6 +393,15 @@
      * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
+    /**
+     * Copies its own CSS rules to a jQuery object.
+     * @function external:"jQuery".copyCssTo
+     * @param {HTMLElement} elem
+     * @param {jQuery} $obj
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {jQuery}
+     */
     $.fn.copyCssTo = function ($obj, properties = null, excludingLoop = false) {
         $obj.copyCss(this, properties, excludingLoop);
 
@@ -354,6 +411,15 @@
     /**
      * Copies CSS rules then resets rules of a jQuery object.
      * @function external:"jQuery.fn".takeCss
+     * @param {jQuery} $obj
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {jQuery}
+     */
+    /**
+     * Copies CSS rules then resets rules of a jQuery object.
+     * @function external:"jQuery".takeCss
+     * @param {HTMLElement} elem
      * @param {jQuery} $obj
      * @param {(string|Array.<string>|null)} [properties=null]
      * @param {boolean} [excludingLoop=false]
@@ -401,6 +467,15 @@
      * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
+    /**
+     * Copies its own CSS rules to a jQuery object then resets its rules.
+     * @function external:"jQuery".giveCssTo
+     * @param {HTMLElement} elem
+     * @param {jQuery} $obj
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {jQuery}
+     */
     $.fn.giveCssTo = function ($obj, properties = null, excludingLoop = false) {
         $obj.takeCss(this, properties, excludingLoop);
 
@@ -410,6 +485,13 @@
     /**
      * Sets CSS rules to browser default ones.
      * @function external:"jQuery.fn".resetCss
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {jQuery}
+     */
+    /**
+     * Sets CSS rules to browser default ones.
+     * @function external:"jQuery".resetCss
+     * @param {HTMLElement} elem
      * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */

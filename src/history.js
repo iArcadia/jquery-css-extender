@@ -5,6 +5,13 @@
      * @param {(boolean|null)} [use=null]
      * @returns {(jQuery|boolean)}
      */
+    /**
+     * Activates or deactivates the use of CSS history. If null, gets if the system's state.
+     * @function external:"jQuery".useCssHistorySystem
+     * @param {HTMLElement} elem
+     * @param {(boolean|null)} [use=null]
+     * @returns {(jQuery|boolean)}
+     */
     $.fn.useCssHistorySystem = function (use = null) {
         if ($.cssExtender.fn.typeOf(use, 'is', null)) {
             return this.data('__cssUseHistorySystem');
@@ -36,6 +43,12 @@
      * @function external:"jQuery.fn".forgetCssHistorySystemOnce
      * @returns {jQuery}
      */
+    /**
+     * Deactives the use of CSS history for the next execution of .css() only.
+     * @function external:"jQuery".forgetCssHistorySystemOnce
+     * @param {HTMLElement} elem
+     * @returns {jQuery}
+     */
     $.fn.forgetCssHistorySystemOnce = function () {
         this.data('__cssForgetHistorySystemOnce', true);
 
@@ -43,6 +56,7 @@
     };
 
     /**
+     * Checks if it is allowed to push a new entry into CSS history.
      * @todo the method
      */
     $.fn.canPushIntoCssHistory = function () {
@@ -52,6 +66,13 @@
     /**
      * Gets CSS history or pushes a new item in the history.
      * @function external:"jQuery.fn".cssHistory
+     * @param {(Object|null)} [css=null]
+     * @returns {Array.<Object>}
+     */
+    /**
+     * Gets CSS history or pushes a new item in the history.
+     * @function external:"jQuery".cssHistory
+     * @param {HTMLElement} elem
      * @param {(Object|null)} [css=null]
      * @returns {Array.<Object>}
      */
@@ -113,6 +134,13 @@
      * @param {number} id
      * @returns {Object.<string, (Object|null)>}
      */
+    /**
+     * Gets an entry in CSS history.
+     * @function external:"jQuery".getCssHistory
+     * @param {HTMLElement} elem
+     * @param {number} id
+     * @returns {Object.<string, (Object|null)>}
+     */
     $.fn.getCssHistory = function (id) {
         return this.cssHistory()[id];
     };
@@ -120,6 +148,12 @@
     /**
      * Gets current entry in CSS history.
      * @function external:"jQuery.fn".getCurrentCss
+     * @returns {Object.<string, (Object|null)>}
+     */
+    /**
+     * Gets current entry in CSS history.
+     * @function external:"jQuery".getCurrentCss
+     * @param {HTMLElement} elem
      * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getCurrentCss = function () {
@@ -131,6 +165,12 @@
      * @function external:"jQuery.fn".getLastCss
      * @returns {Object.<string, (Object|null)>}
      */
+    /**
+     * Gets last entry in CSS history.
+     * @function external:"jQuery".getLastCss
+     * @param {HTMLElement} elem
+     * @returns {Object.<string, (Object|null)>}
+     */
     $.fn.getLastCss = function () {
         return this.getCssHistory(this.cssHistory().length - 1);
     };
@@ -138,6 +178,12 @@
     /**
      * Gets previous entry in CSS history.
      * @function external:"jQuery.fn".getPreviousCss
+     * @returns {(Object.<string, (Object|null)>|null)}
+     */
+    /**
+     * Gets previous entry in CSS history.
+     * @function external:"jQuery".getPreviousCss
+     * @param {HTMLElement} elem
      * @returns {(Object.<string, (Object|null)>|null)}
      */
     $.fn.getPreviousCss = function () {
@@ -155,6 +201,12 @@
      * @function external:"jQuery.fn".getNextCss
      * @returns {(Object.<string, (Object|null)>|null)}
      */
+    /**
+     * Gets next entry in CSS history.
+     * @function external:"jQuery".getNextCss
+     * @param {HTMLElement} elem
+     * @returns {(Object.<string, (Object|null)>|null)}
+     */
     $.fn.getNextCss = function () {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
 
@@ -168,6 +220,14 @@
     /**
      * Uses a previous CSS taken from the history.
      * @function external:"jQuery.fn".useCssFromHistory
+     * @param {number} id
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {jQuery}
+     */
+    /**
+     * Uses a previous CSS taken from the history.
+     * @function external:"jQuery".useCssFromHistory
+     * @param {HTMLElement} elem
      * @param {number} id
      * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
@@ -196,6 +256,13 @@
      * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
+    /**
+     * Uses the previous used CSS rules.
+     * @function external:"jQuery".usePreviousCss
+     * @param {HTMLElement} elem
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {jQuery}
+     */
     $.fn.usePreviousCss = function (properties = null) {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
 
@@ -210,6 +277,13 @@
     /**
      * Uses the next used CSS rules.
      * @function external:"jQuery.fn".useNextCss
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {jQuery}
+     */
+    /**
+     * Uses the next used CSS rules.
+     * @function external:"jQuery".useNextCss
+     * @param {HTMLElement} elem
      * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
@@ -230,6 +304,13 @@
      * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
+    /**
+     * Uses the last used CSS rules from history.
+     * @function external:"jQuery".useLastCss
+     * @param {HTMLElement} elem
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {jQuery}
+     */
     $.fn.useLastCss = function (properties = null) {
         return this.useCssFromHistory((this.cssHistory().length - 1), properties);
     };
@@ -237,6 +318,12 @@
     /**
      * Empties the CSS history.
      * @function external:"jQuery.fn".emptyCssHistory
+     * @returns {jQuery}
+     */
+    /**
+     * Empties the CSS history.
+     * @function external:"jQuery".emptyCssHistory
+     * @param {HTMLElement} elem
      * @returns {jQuery}
      */
     $.fn.emptyCssHistory = function () {

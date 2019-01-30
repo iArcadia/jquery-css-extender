@@ -1,13 +1,13 @@
 (function ($) {
     /** @var {Object.<string, (string|Object)>} external:"jQuery".cssExtender - The jQuery CSS Extender plugin namespace. */
-    /** @var {string} external:"jQuery.cssExtender".name - Name of the plugin. */
-    /** @var {string} external:"jQuery.cssExtender".version - Current version of the plugin. */
-    /** @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin. */
-    /** @var {Object.<string, Function>} external:"jQuery.cssExtender".fn - The jQuery CSS Extender internal methods namespace. */
     $.cssExtender = {
+        /** @var {string} external:"jQuery.cssExtender".name - Name of the plugin. */
         name: 'jQuery CSS Extender',
+        /** @var {string} external:"jQuery.cssExtender".version - Current version of the plugin. */
         version: '1.0.0',
+        /** @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin. */
         github: 'https://github.com/iArcadia/jquery-css-extender',
+        /** @var {Object.<string, Function>} external:"jQuery.cssExtender".fn - The jQuery CSS Extender internal methods namespace. */
         fn: {}
     };
 
@@ -31,7 +31,7 @@
 
     /**
      * Executes a callback if the property has the correct type.
-     * @function jQuery.cssExtender.fn.typeOf
+     * @function external:"jQuery.cssExtender.fn".typeOf
      * @param {*} property
      * @param {string} checkType - Possible values: = | == | === | is | != | !== | is not
      * @param {*} type
@@ -84,7 +84,7 @@
 
     /**
      * Throws a custom error.
-     * @function jQuery.cssExtender.fn.generateError
+     * @function external:"jQuery.cssExtender.fn".generateError
      * @param {*} property
      * @param {string} origin
      * @param {number} position
@@ -151,6 +151,7 @@
 
     /**
      * Checks the optional argument "properties" used in many methods.
+     * @function external:"jQuery.cssExtender.fn".handlePropertiesOptionalArgument
      * @param {(string|array|null)} properties
      * @param {string} origin
      * @param {(number|string)} positionInArgs
@@ -186,6 +187,7 @@
 
     /**
      * Returns all methods of the plugin.
+     * @function external:"jQuery.cssExtender.fn".getAllPluginMethods
      * @returns {Array.<string>}
      */
     $.cssExtender.fn.getAllPluginMethods = function () {
