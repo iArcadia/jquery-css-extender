@@ -1,6 +1,18 @@
+**![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png) Langages** | **Liens**
+----|----
+[![English](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/GB.png)](README.md) | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
+
 # jQuery CSS Extender
 
-_[English](https://github.com/iArcadia/jquery-css-extender/blob/master/README.md) | **Français**_
+- [Installation](#installation)
+- [Usage simple](#usage-simple)
+   - [CSS pur](#css-pur)
+   - [Copier le CSS entre objet jQuery](#copier-le-css-entre-objet-jquery)
+   - [Réinitialiser le CSS](#reinitialiser-le-css)
+   - [Historique CSS](#historique-css)
+   - [Etats CSS](#etats-css)
+- [API](#api)
+- [Todo avant la sortie de la v1.0.0](#todo-avant-la-sortie-de-la-v100)
 
 ---
 
@@ -26,6 +38,8 @@ Ou si vous êtes en production, utilisez ceux minifiés :
 ```
 
 ## Usage simple
+
+### CSS pur
 
 Comme cela a été dit, le but premier de ce plugin était l'ajout de règles CSS aux éléments du DOM grâce à du CSS pur.
 
@@ -229,6 +243,7 @@ $('#element')
 TODO
 
 ## Todo avant la sortie de la v1.0.0
+
 - Développement
    [x] Etats CSS
    [ ] Terminer les exemples
