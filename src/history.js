@@ -57,10 +57,16 @@
 
     /**
      * Checks if it is allowed to push a new entry into CSS history.
-     * @todo the method
+     * @returns {boolean}
+     */
+    /**
+     * Checks if it is allowed to push a new entry into CSS history.
+     * @param {HTMLElement} elem
+     * @returns {boolean}
      */
     $.fn.canPushIntoCssHistory = function () {
-
+        return (this.data('__cssUseHistorySystem') === true
+            && this.data('__cssForgetHistorySystemOnce') === false);
     }
 
     /**

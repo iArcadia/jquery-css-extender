@@ -1,6 +1,7 @@
 /**
  * The jQuery namespace.
  * @external "jQuery"
+ * @see {@link https://jquery.com/}
  */
 
 /**

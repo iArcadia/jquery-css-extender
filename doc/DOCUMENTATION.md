@@ -15,6 +15,7 @@
 The jQuery namespace.
 
 **Kind**: global external  
+**See**: [https://jquery.com/](https://jquery.com/)  
 
 * [jQuery](#external_jQuery)
     * [.cssExtender](#external_jQuery.cssExtender) : <code>Object.&lt;string, (string\|Object)&gt;</code>
@@ -27,6 +28,7 @@ The jQuery namespace.
             * [.generateError(property, origin, position, correctTypes, [errorType])](#external_jQuery.cssExtender.fn.generateError)
             * [.handlePropertiesOptionalArgument(properties, origin, positionInArgs)](#external_jQuery.cssExtender.fn.handlePropertiesOptionalArgument) ⇒ <code>Array.&lt;string&gt;</code>
             * [.getAllPluginMethods()](#external_jQuery.cssExtender.fn.getAllPluginMethods) ⇒ <code>Array.&lt;string&gt;</code>
+            * [.getAllCssRulesFromShorthand(shorthand)](#external_jQuery.cssExtender.fn.getAllCssRulesFromShorthand) ⇒ <code>string</code> \| <code>Array.&lt;string&gt;</code>
     * [.rawCss(elem, css)](#external_jQuery.rawCss) ⇒ <code>jQuery</code>
     * [.rawCssBlock(elem, css)](#external_jQuery.rawCssBlock) ⇒ <code>jQuery</code>
     * [.getComputedCss(elem, [properties], [excludingLoop])](#external_jQuery.getComputedCss) ⇒ <code>Object.&lt;string, string&gt;</code>
@@ -76,6 +78,7 @@ The jQuery CSS Extender plugin namespace.
         * [.generateError(property, origin, position, correctTypes, [errorType])](#external_jQuery.cssExtender.fn.generateError)
         * [.handlePropertiesOptionalArgument(properties, origin, positionInArgs)](#external_jQuery.cssExtender.fn.handlePropertiesOptionalArgument) ⇒ <code>Array.&lt;string&gt;</code>
         * [.getAllPluginMethods()](#external_jQuery.cssExtender.fn.getAllPluginMethods) ⇒ <code>Array.&lt;string&gt;</code>
+        * [.getAllCssRulesFromShorthand(shorthand)](#external_jQuery.cssExtender.fn.getAllCssRulesFromShorthand) ⇒ <code>string</code> \| <code>Array.&lt;string&gt;</code>
 
 <a name="external_jQuery.cssExtender.name"></a>
 
@@ -108,6 +111,7 @@ The jQuery CSS Extender internal methods namespace.
     * [.generateError(property, origin, position, correctTypes, [errorType])](#external_jQuery.cssExtender.fn.generateError)
     * [.handlePropertiesOptionalArgument(properties, origin, positionInArgs)](#external_jQuery.cssExtender.fn.handlePropertiesOptionalArgument) ⇒ <code>Array.&lt;string&gt;</code>
     * [.getAllPluginMethods()](#external_jQuery.cssExtender.fn.getAllPluginMethods) ⇒ <code>Array.&lt;string&gt;</code>
+    * [.getAllCssRulesFromShorthand(shorthand)](#external_jQuery.cssExtender.fn.getAllCssRulesFromShorthand) ⇒ <code>string</code> \| <code>Array.&lt;string&gt;</code>
 
 <a name="external_jQuery.cssExtender.fn.mergeAllChangedRulesFromLast"></a>
 
@@ -167,6 +171,17 @@ Checks the optional argument "properties" used in many methods.
 Returns all methods of the plugin.
 
 **Kind**: static method of [<code>fn</code>](#external_jQuery.cssExtender.fn)  
+<a name="external_jQuery.cssExtender.fn.getAllCssRulesFromShorthand"></a>
+
+##### fn.getAllCssRulesFromShorthand(shorthand) ⇒ <code>string</code> \| <code>Array.&lt;string&gt;</code>
+Gets all CSS subrules of a shorthand one.
+
+**Kind**: static method of [<code>fn</code>](#external_jQuery.cssExtender.fn)  
+
+| Param | Type |
+| --- | --- |
+| shorthand | <code>string</code> | 
+
 <a name="external_jQuery.rawCss"></a>
 
 ### jQuery.rawCss(elem, css) ⇒ <code>jQuery</code>
