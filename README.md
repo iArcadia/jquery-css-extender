@@ -1,4 +1,4 @@
-_**English** \| [![Français](https://www.countries-ofthe-world.com/flags-normal/flag-of-France.png)](README.fr.md)_ | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
+_**![English](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/GB.png) (Current)** \| [![Français](https://cdn1.iconfinder.com/data/icons/stripe-flag-set/23/FR.png)](README.fr.md)_ | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
 ----|----
 
 # jQuery CSS Extender
