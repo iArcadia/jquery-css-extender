@@ -1,4 +1,4 @@
-_**English** \| [Français](README.fr.md)_ | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
+_**English** \| [![Français](https://www.countries-ofthe-world.com/flags-normal/flag-of-France.png)](README.fr.md)_ | _[Bugs](https://github.com/iArcadia/jquery-css-extender/labels/bug) \| [Feature suggestions](https://github.com/iArcadia/jquery-css-extender/labels/feature%20suggestion)_
 ----|----
 
 # jQuery CSS Extender
