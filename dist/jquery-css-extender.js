@@ -1,5 +1,9 @@
 (function ($) {
-    /** @var {object} Returns plugin information. */
+    /**
+     * @var {string} external:"jQuery.cssExtender".name - Name of the plugin.
+     * @var {string} external:"jQuery.cssExtender".version - Current version of the plugin.
+     * @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin.
+     */
     $.cssExtender = {
         name: 'jQuery CSS Extender',
         version: '1.0.0',
@@ -224,7 +228,7 @@
      * Overrides the original .css() method.
      * @see {@link http://api.jquery.com/css/}
      * @function external:"jQuery.fn".css
-     * @returns {jQuery}
+     * @returns {external:"jQuery"}
      */
     let fnCss = $.fn.css;
     $.fn.css = function () {
@@ -1008,7 +1012,8 @@
     /**
      * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
      * @function external:"jQuery.fn".cssStateOnHover
-     * @param {string} [id='hover']
+     * @param {string} [id=hover]
+     * @returns {jQuery}
      */
     $.fn.cssStateOnHover = function (id = 'hover') {
         this.on('mouseenter', function () {
@@ -1016,6 +1021,8 @@
         }).on('mouseleave', function () {
             $(this).useDefaultCssState();
         });
+
+        return this;
     };
 
     /**
@@ -1051,4 +1058,16 @@
  * The jQuery plugin namespace.
  * @external "jQuery.fn"
  * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
+ */
+
+/**
+ * The jQuery CSS Extender namespace.
+ * @external "jQuery.cssExtender"
+ * @see {@link https://github.com/iArcadia/jquery-css-extender}
+ */
+
+/**
+ * The jQuery CSS Extender internal methods namespace.
+ * @external "jQuery.cssExtender.fn"
+ * @see {@link https://github.com/iArcadia/jquery-css-extender}
  */

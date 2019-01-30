@@ -118,7 +118,8 @@
     /**
      * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
      * @function external:"jQuery.fn".cssStateOnHover
-     * @param {string} [id='hover']
+     * @param {string} [id=hover]
+     * @returns {jQuery}
      */
     $.fn.cssStateOnHover = function (id = 'hover') {
         this.on('mouseenter', function () {
@@ -126,6 +127,8 @@
         }).on('mouseleave', function () {
             $(this).useDefaultCssState();
         });
+
+        return this;
     };
 
     /**

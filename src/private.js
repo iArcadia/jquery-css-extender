@@ -1,5 +1,9 @@
 (function ($) {
-    /** @var {object} Returns plugin information. */
+    /**
+     * @var {string} external:"jQuery.cssExtender".name - Name of the plugin.
+     * @var {string} external:"jQuery.cssExtender".version - Current version of the plugin.
+     * @var {string} external:"jQuery.cssExtender".github - GitHub repository URL of the plugin.
+     */
     $.cssExtender = {
         name: 'jQuery CSS Extender',
         version: '1.0.0',
