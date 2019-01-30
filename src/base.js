@@ -8,6 +8,9 @@
 
     /**
      * Overrides the original .css() method.
+     * @see {@link http://api.jquery.com/css/}
+     * @function external:"jQuery.fn".css
+     * @returns {jQuery}
      */
     let fnCss = $.fn.css;
     $.fn.css = function () {
@@ -131,9 +134,9 @@
     /**
      * Gets computed CSS rules.
      * @function external:"jQuery.fn".getComputedCss
-     * @param {string|array|null} properties
-     * @param {bool} excludingLoop
-     * @returns {object}
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {Object.<string, string>}
      */
     $.fn.getComputedCss = function (properties = null, excludingLoop = false) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getComputedCss');
@@ -160,10 +163,11 @@
     /**
      * Gets all CSS rules that are differents from the original ones.
      * @function external:"jQuery.fn".getDifferencesFromDefaultCss
-     * @param {string|array|null} properties
-     * @returns {object}
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {Object.<string, string>}
+     *
+     * @todo excludingLoop
      */
-    // TODO excludingLoop
     $.fn.getDifferencesFromDefaultCss = function (properties = null) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getDifferencesFromDefaultCss');
 
@@ -297,8 +301,8 @@
      * @summary Copies CSS rules of a jQuery object.
      * @function external:"jQuery.fn".copyCss
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.copyCss = function ($obj, properties = null, excludingLoop = false) {
@@ -337,8 +341,8 @@
      * Copies its own CSS rules to a jQuery object.
      * @function external:"jQuery.fn".copyCssTo
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.copyCssTo = function ($obj, properties = null, excludingLoop = false) {
@@ -351,8 +355,8 @@
      * Copies CSS rules then resets rules of a jQuery object.
      * @function external:"jQuery.fn".takeCss
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.takeCss = function ($obj, properties = null, excludingLoop = false) {
@@ -393,8 +397,8 @@
      * Copies its own CSS rules to a jQuery object then resets its rules.
      * @function external:"jQuery.fn".giveCssTo
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.giveCssTo = function ($obj, properties = null, excludingLoop = false) {
@@ -406,7 +410,7 @@
     /**
      * Sets CSS rules to browser default ones.
      * @function external:"jQuery.fn".resetCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.resetCss = function (properties = null) {

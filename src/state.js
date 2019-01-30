@@ -2,9 +2,9 @@
     /**
      * Gets all, or one CSS state, or pushes a new item in the state list.
      * @function external:"jQuery.fn".cssState
-     * @param {string|null}
-     * @param {object|null} css
-     * @returns {object}
+     * @param {(string|null)} [id=null]
+     * @param {(Object.<string, string>|null)} [css=null]
+     * @returns {Object.<string, Object>}
      */
     $.fn.cssState = function (id = null, css = null) {
         if ($.cssExtender.fn.typeOf(id, 'is not', null)) {
@@ -66,7 +66,7 @@
     /**
      * Creates the CSS state by default.
      * @function external:"jQuery.fn".defaultCssState
-     * @param {object|null} css
+     * @param {(Object.<string, string>|null)} [css=null]
      * @returns {jQuery}
      */
     $.fn.defaultCssState = function (css = null) {
@@ -100,7 +100,7 @@
      * Creates an event listener which will be associated to a CSS state.
      * @function external:"jQuery.fn".cssStateOn
      * @param {string} eventType
-     * @param {string} id
+     * @param {(string|null)} [id=null]
      * @returns {jQuery}
      */
     $.fn.cssStateOn = function (eventType, id = null) {
@@ -118,7 +118,7 @@
     /**
      * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
      * @function external:"jQuery.fn".cssStateOnHover
-     * @param {string} id - Default value: hover
+     * @param {string} [id='hover']
      */
     $.fn.cssStateOnHover = function (id = 'hover') {
         this.on('mouseenter', function () {
@@ -131,7 +131,7 @@
     /**
      * Loops through all CSS states. For each one, creates and associates an event listener.
      * @function external:"jQuery.fn".autoCssStateOn
-     * @param {array} excludedStates - Default value: []
+     * @param {Array.<string>} [excludedStates=[]]
      * @returns {jQuery}
      */
     $.fn.autoCssStateOn = function (excludedStates = []) {

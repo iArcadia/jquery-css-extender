@@ -222,6 +222,9 @@
 
     /**
      * Overrides the original .css() method.
+     * @see {@link http://api.jquery.com/css/}
+     * @function external:"jQuery.fn".css
+     * @returns {jQuery}
      */
     let fnCss = $.fn.css;
     $.fn.css = function () {
@@ -345,9 +348,9 @@
     /**
      * Gets computed CSS rules.
      * @function external:"jQuery.fn".getComputedCss
-     * @param {string|array|null} properties
-     * @param {bool} excludingLoop
-     * @returns {object}
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
+     * @returns {Object.<string, string>}
      */
     $.fn.getComputedCss = function (properties = null, excludingLoop = false) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getComputedCss');
@@ -374,10 +377,11 @@
     /**
      * Gets all CSS rules that are differents from the original ones.
      * @function external:"jQuery.fn".getDifferencesFromDefaultCss
-     * @param {string|array|null} properties
-     * @returns {object}
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @returns {Object.<string, string>}
+     *
+     * @todo excludingLoop
      */
-    // TODO excludingLoop
     $.fn.getDifferencesFromDefaultCss = function (properties = null) {
         properties = $.cssExtender.fn.handlePropertiesOptionalArgument(properties, 1, 'getDifferencesFromDefaultCss');
 
@@ -511,8 +515,8 @@
      * @summary Copies CSS rules of a jQuery object.
      * @function external:"jQuery.fn".copyCss
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.copyCss = function ($obj, properties = null, excludingLoop = false) {
@@ -551,8 +555,8 @@
      * Copies its own CSS rules to a jQuery object.
      * @function external:"jQuery.fn".copyCssTo
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.copyCssTo = function ($obj, properties = null, excludingLoop = false) {
@@ -565,8 +569,8 @@
      * Copies CSS rules then resets rules of a jQuery object.
      * @function external:"jQuery.fn".takeCss
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.takeCss = function ($obj, properties = null, excludingLoop = false) {
@@ -607,8 +611,8 @@
      * Copies its own CSS rules to a jQuery object then resets its rules.
      * @function external:"jQuery.fn".giveCssTo
      * @param {jQuery} $obj
-     * @param {string|array|null} properties
-     * @param {boolean} excludingLoop
+     * @param {(string|Array.<string>|null)} [properties=null]
+     * @param {boolean} [excludingLoop=false]
      * @returns {jQuery}
      */
     $.fn.giveCssTo = function ($obj, properties = null, excludingLoop = false) {
@@ -620,7 +624,7 @@
     /**
      * Sets CSS rules to browser default ones.
      * @function external:"jQuery.fn".resetCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.resetCss = function (properties = null) {
@@ -642,8 +646,8 @@
     /**
      * Activates or deactivates the use of CSS history. If null, gets if the system's state.
      * @function external:"jQuery.fn".useCssHistorySystem
-     * @param {boolean|null} use
-     * @returns {jQuery|boolean}
+     * @param {(boolean|null)} [use=null]
+     * @returns {(jQuery|boolean)}
      */
     $.fn.useCssHistorySystem = function (use = null) {
         if ($.cssExtender.fn.typeOf(use, 'is', null)) {
@@ -682,6 +686,9 @@
         return this;
     };
 
+    /**
+     * @todo the method
+     */
     $.fn.canPushIntoCssHistory = function () {
 
     }
@@ -689,8 +696,8 @@
     /**
      * Gets CSS history or pushes a new item in the history.
      * @function external:"jQuery.fn".cssHistory
-     * @param {object|null} css
-     * @returns {array}
+     * @param {(Object|null)} [css=null]
+     * @returns {Array.<Object>}
      */
     $.fn.cssHistory = function (css = null) {
         if ($.cssExtender.fn.typeOf(css, 'is not', null)
@@ -748,7 +755,7 @@
      * Gets an entry in CSS history.
      * @function external:"jQuery.fn".getCssHistory
      * @param {number} id
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getCssHistory = function (id) {
         return this.cssHistory()[id];
@@ -757,7 +764,7 @@
     /**
      * Gets current entry in CSS history.
      * @function external:"jQuery.fn".getCurrentCss
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getCurrentCss = function () {
         return this.getCssHistory(this.data('__cssCurrentHistoryId'));
@@ -766,7 +773,7 @@
     /**
      * Gets last entry in CSS history.
      * @function external:"jQuery.fn".getLastCss
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getLastCss = function () {
         return this.getCssHistory(this.cssHistory().length - 1);
@@ -775,7 +782,7 @@
     /**
      * Gets previous entry in CSS history.
      * @function external:"jQuery.fn".getPreviousCss
-     * @returns {object}
+     * @returns {(Object.<string, (Object|null)>|null)}
      */
     $.fn.getPreviousCss = function () {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
@@ -790,7 +797,7 @@
     /**
      * Gets next entry in CSS history.
      * @function external:"jQuery.fn".getNextCss
-     * @returns {object}
+     * @returns {(Object.<string, (Object|null)>|null)}
      */
     $.fn.getNextCss = function () {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
@@ -806,7 +813,7 @@
      * Uses a previous CSS taken from the history.
      * @function external:"jQuery.fn".useCssFromHistory
      * @param {number} id
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useCssFromHistory = function (id, properties = null) {
@@ -830,7 +837,7 @@
     /**
      * Uses the previous used CSS rules.
      * @function external:"jQuery.fn".usePreviousCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.usePreviousCss = function (properties = null) {
@@ -847,7 +854,7 @@
     /**
      * Uses the next used CSS rules.
      * @function external:"jQuery.fn".useNextCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useNextCss = function (properties = null) {
@@ -864,7 +871,7 @@
     /**
      * Uses the last used CSS rules from history.
      * @function external:"jQuery.fn".useLastCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useLastCss = function (properties = null) {
@@ -885,9 +892,9 @@
     /**
      * Gets all, or one CSS state, or pushes a new item in the state list.
      * @function external:"jQuery.fn".cssState
-     * @param {string|null}
-     * @param {object|null} css
-     * @returns {object}
+     * @param {(string|null)} [id=null]
+     * @param {(Object.<string, string>|null)} [css=null]
+     * @returns {Object.<string, Object>}
      */
     $.fn.cssState = function (id = null, css = null) {
         if ($.cssExtender.fn.typeOf(id, 'is not', null)) {
@@ -949,7 +956,7 @@
     /**
      * Creates the CSS state by default.
      * @function external:"jQuery.fn".defaultCssState
-     * @param {object|null} css
+     * @param {(Object.<string, string>|null)} [css=null]
      * @returns {jQuery}
      */
     $.fn.defaultCssState = function (css = null) {
@@ -983,7 +990,7 @@
      * Creates an event listener which will be associated to a CSS state.
      * @function external:"jQuery.fn".cssStateOn
      * @param {string} eventType
-     * @param {string} id
+     * @param {(string|null)} [id=null]
      * @returns {jQuery}
      */
     $.fn.cssStateOn = function (eventType, id = null) {
@@ -1001,7 +1008,7 @@
     /**
      * Associates the mouseenter event listener to the CSS state of specified ID, then the mouseleave one to the default CSS state.
      * @function external:"jQuery.fn".cssStateOnHover
-     * @param {string} id - Default value: hover
+     * @param {string} [id='hover']
      */
     $.fn.cssStateOnHover = function (id = 'hover') {
         this.on('mouseenter', function () {
@@ -1014,7 +1021,7 @@
     /**
      * Loops through all CSS states. For each one, creates and associates an event listener.
      * @function external:"jQuery.fn".autoCssStateOn
-     * @param {array} excludedStates - Default value: []
+     * @param {Array.<string>} [excludedStates=[]]
      * @returns {jQuery}
      */
     $.fn.autoCssStateOn = function (excludedStates = []) {
@@ -1034,6 +1041,11 @@
     };
 }(jQuery));
 
+
+/**
+ * The jQuery namespace.
+ * @external "jQuery"
+ */
 
 /**
  * The jQuery plugin namespace.

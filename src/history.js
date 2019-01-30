@@ -2,8 +2,8 @@
     /**
      * Activates or deactivates the use of CSS history. If null, gets if the system's state.
      * @function external:"jQuery.fn".useCssHistorySystem
-     * @param {boolean|null} use
-     * @returns {jQuery|boolean}
+     * @param {(boolean|null)} [use=null]
+     * @returns {(jQuery|boolean)}
      */
     $.fn.useCssHistorySystem = function (use = null) {
         if ($.cssExtender.fn.typeOf(use, 'is', null)) {
@@ -42,6 +42,9 @@
         return this;
     };
 
+    /**
+     * @todo the method
+     */
     $.fn.canPushIntoCssHistory = function () {
 
     }
@@ -49,8 +52,8 @@
     /**
      * Gets CSS history or pushes a new item in the history.
      * @function external:"jQuery.fn".cssHistory
-     * @param {object|null} css
-     * @returns {array}
+     * @param {(Object|null)} [css=null]
+     * @returns {Array.<Object>}
      */
     $.fn.cssHistory = function (css = null) {
         if ($.cssExtender.fn.typeOf(css, 'is not', null)
@@ -108,7 +111,7 @@
      * Gets an entry in CSS history.
      * @function external:"jQuery.fn".getCssHistory
      * @param {number} id
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getCssHistory = function (id) {
         return this.cssHistory()[id];
@@ -117,7 +120,7 @@
     /**
      * Gets current entry in CSS history.
      * @function external:"jQuery.fn".getCurrentCss
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getCurrentCss = function () {
         return this.getCssHistory(this.data('__cssCurrentHistoryId'));
@@ -126,7 +129,7 @@
     /**
      * Gets last entry in CSS history.
      * @function external:"jQuery.fn".getLastCss
-     * @returns {object}
+     * @returns {Object.<string, (Object|null)>}
      */
     $.fn.getLastCss = function () {
         return this.getCssHistory(this.cssHistory().length - 1);
@@ -135,7 +138,7 @@
     /**
      * Gets previous entry in CSS history.
      * @function external:"jQuery.fn".getPreviousCss
-     * @returns {object}
+     * @returns {(Object.<string, (Object|null)>|null)}
      */
     $.fn.getPreviousCss = function () {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
@@ -150,7 +153,7 @@
     /**
      * Gets next entry in CSS history.
      * @function external:"jQuery.fn".getNextCss
-     * @returns {object}
+     * @returns {(Object.<string, (Object|null)>|null)}
      */
     $.fn.getNextCss = function () {
         let id = this.data('__cssCurrentHistoryId') || (this.cssHistory().length - 1);
@@ -166,7 +169,7 @@
      * Uses a previous CSS taken from the history.
      * @function external:"jQuery.fn".useCssFromHistory
      * @param {number} id
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useCssFromHistory = function (id, properties = null) {
@@ -190,7 +193,7 @@
     /**
      * Uses the previous used CSS rules.
      * @function external:"jQuery.fn".usePreviousCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.usePreviousCss = function (properties = null) {
@@ -207,7 +210,7 @@
     /**
      * Uses the next used CSS rules.
      * @function external:"jQuery.fn".useNextCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useNextCss = function (properties = null) {
@@ -224,7 +227,7 @@
     /**
      * Uses the last used CSS rules from history.
      * @function external:"jQuery.fn".useLastCss
-     * @param {string|array|null} properties
+     * @param {(string|Array.<string>|null)} [properties=null]
      * @returns {jQuery}
      */
     $.fn.useLastCss = function (properties = null) {
